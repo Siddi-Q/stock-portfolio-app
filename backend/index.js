@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 
 require('dotenv').config();
@@ -11,5 +12,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(userRouter);
+
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.listen(port, () => console.log(`listening at port ${port}`));

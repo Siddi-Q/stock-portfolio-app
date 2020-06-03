@@ -37,7 +37,7 @@ export default class Signin extends Component {
         }
 
         try {
-            const res = await axios.post('http://localhost:5000/signin', userCredentials) // update url
+            const res = await axios.post('/signin', userCredentials) // update url
             sessionStorage.setItem('token', res.data.authToken);
             this.props.setIsAuth(true);
         }

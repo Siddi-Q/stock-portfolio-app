@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.post('http://localhost:5000/verify', null, {
+      const res = await axios.post('/verify', null, {
         headers: {Authorization: sessionStorage.token}
       });
       res ? this.setIsAuth(true) : this.setIsAuth(false);

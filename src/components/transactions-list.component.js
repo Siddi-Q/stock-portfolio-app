@@ -15,7 +15,7 @@ export default class TransactionsList extends Component {
 
     async componentDidMount() {
         try {
-            const transactionsList = await axios.get('http://localhost:5000/transactions',{
+            const transactionsList = await axios.get('/transactions',{
                 headers: {Authorization: sessionStorage.token}
             });
     

@@ -5,7 +5,7 @@ export default class Logout extends Component {
 
     async componentDidMount() {
         try {
-            await axios.post('http://localhost:5000/logout', null, {
+            await axios.post('/logout', null, {
                 headers: {Authorization: sessionStorage.token}
             });
             sessionStorage.removeItem("token");

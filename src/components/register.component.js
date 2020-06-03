@@ -46,7 +46,7 @@ export default class Register extends Component {
         }
 
         try {
-            const res = await axios.post('http://localhost:5000/register', userInfo) // update url
+            const res = await axios.post('/register', userInfo) // update url
             sessionStorage.setItem('token', res.data.authToken);
             this.props.setIsAuth(true);
         }

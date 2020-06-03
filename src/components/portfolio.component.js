@@ -25,7 +25,7 @@ export default class Portfolio extends Component {
 
     async componentDidMount() {
         try {
-            const res = await axios.get('http://localhost:5000/portfolio', {
+            const res = await axios.get('/portfolio', {
                 headers: {Authorization: sessionStorage.token}
             });
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
@@ -57,11 +57,11 @@ export default class Portfolio extends Component {
             quantity: this.state.quantity
         };
         
-        await axios.post('http://localhost:5000/buy', newItem, {
+        await axios.post('/buy', newItem, {
             headers: {Authorization: sessionStorage.token}
         });
 
-        const res = await axios.get('http://localhost:5000/portfolio', {
+        const res = await axios.get('/portfolio', {
             headers: {Authorization: sessionStorage.token}
         });
 
