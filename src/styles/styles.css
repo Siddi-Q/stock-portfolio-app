@@ -1,0 +1,19 @@
+.line {
+    border-left: thick solid  #000000;
+    /* height: 500px; */
+}
+
+@media only screen and (max-width: 767px) {
+    .line {
+        border-top: thick solid  #000000;
+        border-left: thick solid  #ffffff;
+        margin-top: 5%;
+        padding-top: 5%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #portfolio-title {
+        font-size: 1.5em;
+    }
+}
