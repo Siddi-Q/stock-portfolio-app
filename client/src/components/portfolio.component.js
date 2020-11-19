@@ -19,7 +19,8 @@ export default class Portfolio extends Component {
             quantity: '',
             portfolioList: [],
             balance: 0,
-            totalPortfolioPrice: 0
+            totalPortfolioPrice: 0,
+            errorMessage: ''
         };
     }
 
@@ -57,22 +58,27 @@ export default class Portfolio extends Component {
             quantity: this.state.quantity
         };
         
-        await axios.post('/buy', newItem, {
-            headers: {Authorization: sessionStorage.token}
-        });
+        try {
+            await axios.post('/buy', newItem, {
+                headers: {Authorization: sessionStorage.token}
+            });
 
-        const res = await axios.get('/portfolio', {
-            headers: {Authorization: sessionStorage.token}
-        });
-
-        const {portfolioList, balance, totalPortfolioPrice} = res.data;
-        this.setState({
-            ticker: '',
-            quantity: '',
-            portfolioList, 
-            balance, 
-            totalPortfolioPrice
-        });
+            const res = await axios.get('/portfolio', {
+                headers: {Authorization: sessionStorage.token}
+            });
+    
+            const {portfolioList, balance, totalPortfolioPrice} = res.data;
+            this.setState({
+                ticker: '',
+                quantity: '',
+                portfolioList, 
+                balance, 
+                totalPortfolioPrice
+            });
+        }
+        catch {
+            this.setState({errorMessage: "An error occurred. Try again!"});
+        }
     }
     
     render() {
@@ -91,6 +97,7 @@ export default class Portfolio extends Component {
                             balance={this.state.balance}
                             ticker={this.state.ticker}
                             quantity={this.state.quantity}
+                            errorMessage={this.state.errorMessage}
                             onTickerChange={this.handleTickerChange}
                             onQuantityChange={this.handleQuantityChange}
                             onSubmit={this.handleSubmit}/>

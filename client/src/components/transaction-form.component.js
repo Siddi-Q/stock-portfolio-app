@@ -37,10 +37,11 @@ export default class TransactionForm extends Component {
                     <div className="form-group row justify-content-center">
                         <div className="col-8 col-md-6">
                             <label className="sr-only">Quantity</label>
-                            <input required type="number" className="form-control" placeholder="Quantity" min="0"
+                            <input required type="number" className="form-control" placeholder="Quantity" min="1"
                                 value={this.props.quantity} onChange={this.handleQuantityChange} />
                         </div>
                     </div>
+                    {this.props.errorMessage && <p style={{ color: "red" }}>{this.props.errorMessage}</p> }
                     <div className="form-group row justify-content-center">
                         <div className="col-8 col-md-6">
                             <input type="submit" value="Buy" className="btn btn-lg btn-primary" />
