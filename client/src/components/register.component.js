@@ -14,7 +14,8 @@ export default class Register extends Component {
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            errorMessage: ''
         }
     }
 
@@ -51,7 +52,7 @@ export default class Register extends Component {
             this.props.setIsAuth(true);
         }
         catch (error) {
-            console.error(error);
+            this.setState({errorMessage: "Email is in use!"})
         }
     }
 
@@ -81,6 +82,7 @@ export default class Register extends Component {
                                 value={this.state.password} onChange={this.onChangePassword} />
                         </div>
                     </div>
+                    {this.state.errorMessage && <p style={{ color: "red" }}>{this.state.errorMessage}</p> }
                     <div className="form-group row justify-content-center">
                         <div className="col-sm-12 col-md-6 col-lg-4">
                             <input type="submit" value="Submit" className="btn btn-lg btn-primary" />
