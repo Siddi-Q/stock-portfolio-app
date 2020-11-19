@@ -12,7 +12,8 @@ export default class Signin extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errorMessage: ''
         }
     }
 
@@ -42,7 +43,7 @@ export default class Signin extends Component {
             this.props.setIsAuth(true);
         }
         catch (error) {
-            console.error(error);
+            this.setState({errorMessage: error.response.data.message});
         }
     }
 
@@ -65,6 +66,7 @@ export default class Signin extends Component {
                                 value={this.state.password} onChange={this.onChangePassword} />
                         </div>
                     </div>
+                    {this.state.errorMessage && <p style={{ color: "red" }}>{this.state.errorMessage}</p> }
                     <div className="form-group row justify-content-center">
                         <div className="col-sm-12 col-md-6 col-lg-4">
                             <input type="submit" value="Sign in" className="btn btn-lg btn-primary" />
