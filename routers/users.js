@@ -104,7 +104,7 @@ router.get('/portfolio', auth, async (req, res) => {
         // Get list of ticker symbols in the user's portfolio
         let symbols = [];
         for(let i = 0; i < portfolioList.length; i++) {
-            symbols.push(portfolioList[i].ticker);
+            symbols.push(portfolioList[i].ticker.toUpperCase());
         }
 
         if(symbols.length > 0) {
@@ -114,17 +114,7 @@ router.get('/portfolio', auth, async (req, res) => {
 
             // For each stock, get the latest and open prices
             for(let i = 0; i < portfolioList.length; i++) {
-                let latestPrice = 0;
-                let openPrice = 0;
-
-                if(response.data[portfolioList[i].ticker].quote.latestPrice == null) {
-                    latestPrice = response.data[portfolioList[i].ticker].quote.previousClose;
-                    openPrice = latestPrice;
-                }
-                else {
-                    latestPrice = response.data[portfolioList[i].ticker].quote.latestPrice;
-                    openPrice = response.data[portfolioList[i].ticker].quote.open;
-                }
+                let {latestPrice, open: openPrice} = response.data[portfolioList[i].ticker].quote;
 
                 portfolioList[i].totalPrice = latestPrice * portfolioList[i].quantity;
                 totalPortfolioPrice += portfolioList[i].totalPrice;
