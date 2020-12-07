@@ -44,20 +44,12 @@ router.post('/buy', auth, async (req, res) => {
 
     try {
         if(!Number.isInteger(quantity) || quantity < 0 ) {
-            throw new Error( "Quantity is not a whole number!");
+            throw new Error("Quantity is not a whole number!");
         }
 
-        let { balance, portfolio, transactions } = req.user;
+        let {balance, portfolio, transactions} = req.user;
         const response = await axios.get(api_url);
-
-        // Get the latest price of the stock.
-        let latestPrice;
-        if(response.data.latestPrice == null) {
-            latestPrice = response.data.previousClose;
-        } 
-        else {
-            latestPrice = response.data.latestPrice;
-        }
+        const {latestPrice} = response.data;
         const totalPrice = latestPrice * quantity;
 
         // Check if the user has enough cash to make the purchase.
@@ -69,12 +61,11 @@ router.post('/buy', auth, async (req, res) => {
         balance = balance - totalPrice;
 
         // Update transactions
-        transactions = transactions.concat({ ticker, quantity, price: latestPrice });
+        transactions = transactions.concat({ticker, quantity, price: latestPrice});
         
         // Update portfolio
         let updated = false;
-        const lenPortfolio = portfolio.length;
-        for(let i = 0; i < lenPortfolio; i++) {
+        for(let i = 0; i < portfolio.length; i++) {
             if(portfolio[i].ticker.toUpperCase() === ticker) {
                 portfolio[i].quantity += quantity;
                 updated = true;
@@ -83,11 +74,11 @@ router.post('/buy', auth, async (req, res) => {
         }
 
         if(!updated){
-            portfolio = portfolio.concat({ ticker, quantity });
+            portfolio = portfolio.concat({ticker, quantity});
         }
         
         // Update database with updated values
-        await User.findByIdAndUpdate(req.user.id, { transactions, balance, portfolio });
+        await User.findByIdAndUpdate(req.user.id, {transactions, balance, portfolio});
         res.status(201).send("Good!"); // Todo: Update 
     } catch (error) {
         res.status(400).send(error);
