@@ -61,25 +61,19 @@ router.post('/buy', auth, async (req, res) => {
         balance = balance - totalPrice;
 
         // Update transactions
-        transactions = transactions.concat({ticker, quantity, price: latestPrice});
+        transactions.push({ticker, quantity, price: latestPrice});
         
         // Update portfolio
-        let updated = false;
-        for(let i = 0; i < portfolio.length; i++) {
-            if(portfolio[i].ticker.toUpperCase() === ticker) {
-                portfolio[i].quantity += quantity;
-                updated = true;
-                break;
-            }
-        }
-
-        if(!updated){
-            portfolio = portfolio.concat({ticker, quantity});
+        const stockIndex = portfolio.findIndex(stock => stock.ticker.toUpperCase() === ticker);
+        if(stockIndex === -1) {
+            portfolio.push({ticker, quantity});
+        } else {
+            portfolio[stockIndex].quantity += quantity;
         }
         
         // Update database with updated values
         await User.findByIdAndUpdate(req.user.id, {transactions, balance, portfolio});
-        res.status(201).send("Good!"); // Todo: Update 
+        res.status(201).send("Good!");
     } catch (error) {
         res.status(400).send(error);
     }
