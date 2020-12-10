@@ -61,7 +61,7 @@ router.post('/buy', auth, async (req, res) => {
         balance = balance - totalPrice;
 
         // Update transactions
-        transactions.push({ticker, quantity, price: latestPrice});
+        transactions.push({type: "BUY", ticker, quantity, price: latestPrice});
         
         // Update portfolio
         const stockIndex = portfolio.findIndex(stock => stock.ticker.toUpperCase() === ticker);
@@ -106,7 +106,7 @@ router.post('/sell', auth, async (req, res) => {
         balance += totalPrice;
 
         // Update transactions
-        transactions.push({ticker, quantity, price: latestPrice});
+        transactions.push({type: "SELL", ticker, quantity, price: latestPrice});
 
         // Update portfolio
         let stock = portfolio[stockIndex];
