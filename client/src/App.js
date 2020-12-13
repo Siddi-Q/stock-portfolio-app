@@ -47,14 +47,16 @@ export default class App extends React.Component {
       <Router>
         {this.state.isAuth ? <PrivateNavbar /> : <Navbar />}
         <br />
-        <Switch>
-          <Route exact path="/" render={() => <Redirect to="/signin"/>}/>
-          <Route exact path="/signin" render={() => this.state.isAuth ? <Redirect to="/portfolio"/> : <Signin setIsAuth={this.setIsAuth}/>}/>
-          <Route exact path="/register" render={() => this.state.isAuth ? <Redirect to="/portfolio"/> : <Register setIsAuth={this.setIsAuth}/>}/>
-          <Route exact path="/portfolio" render={() => this.state.isAuth ? <Portfolio/> : <Redirect to="/signin"/>}/>
-          <Route exact path="/transactions" render={() => this.state.isAuth ? <TransactionsList /> : <Redirect to="/signin"/>}/>
-          <Route exact path="/logout" render={() => this.state.isAuth ? <Logout setIsAuth={this.setIsAuth}/> : <Redirect to="/signin"/>}/>
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/signin"/>}/>
+            <Route exact path="/signin" render={() => this.state.isAuth ? <Redirect to="/portfolio"/> : <Signin setIsAuth={this.setIsAuth}/>}/>
+            <Route exact path="/register" render={() => this.state.isAuth ? <Redirect to="/portfolio"/> : <Register setIsAuth={this.setIsAuth}/>}/>
+            <Route exact path="/portfolio" render={() => this.state.isAuth ? <Portfolio/> : <Redirect to="/signin"/>}/>
+            <Route exact path="/transactions" render={() => this.state.isAuth ? <TransactionsList /> : <Redirect to="/signin"/>}/>
+            <Route exact path="/logout" render={() => this.state.isAuth ? <Logout setIsAuth={this.setIsAuth}/> : <Redirect to="/signin"/>}/>
+          </Switch>
+        </div>
       </Router>
     );
   }
