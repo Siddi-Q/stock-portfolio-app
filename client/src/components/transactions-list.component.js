@@ -30,15 +30,17 @@ export default class TransactionsList extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <h1>Transactions</h1>
                 <br />
                 <div className="row">
-                    <div className="col-sm-12 col-md-6 col-lg-4">
-                        <ul className="list-group list-group-flush">
-                        {this.state.transactionsList.map((item, index) => (
-                            <TransactionsListItem key={index} item={item}/>))}
-                        </ul>
+                    <div className="col-sm-12 col-lg-8">
+                        <table className="table table-hover">
+                            <tbody>
+                                {this.state.transactionsList.map((item, index) => (
+                                <TransactionsListItem key={index} item={item}/>))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
