@@ -83,16 +83,18 @@ export default class Portfolio extends Component {
     
     render() {
         return (
-            <div className="container">
+            <div>
                 <h1 id="portfolio-title">Portfolio (${this.state.totalPortfolioPrice.toFixed(2)})</h1>
                 <br />
-                <div className="row">
-                    <div className="col-sm-12 col-md-6">
-                        <ul className="list-group list-group-flush">
-                            <PortfolioList portfolioList={this.state.portfolioList}/>
-                        </ul>                    
+                <div className="row justify-content-center">
+                    <div className="col-sm-12 col-md-6 col-lg-8">
+                        <table className="table table-hover">
+                            <tbody>
+                                <PortfolioList portfolioList={this.state.portfolioList}/>
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="col-sm-12 col-md-6 line">
+                    <div className="col-sm-12 col-md-6 col-lg-4">
                         <TransactionForm
                             balance={this.state.balance}
                             ticker={this.state.ticker}
