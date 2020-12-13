@@ -5,18 +5,16 @@ export default class PrivateNavbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+            <nav className="navbar navbar-expand navbar-dark bg-dark">
                 <Link to="/portfolio" className="navbar-brand">Stock Portfolio</Link>
                 <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav ml-auto">
                         <li className="navbar-item">
                             <Link to="/portfolio" className="nav-link">Portfolio</Link>
                         </li>
-                        <li className="navbar-item nav-link">|</li>
                         <li className="navbar-item">
                             <Link to="/transactions" className="nav-link">Transactions</Link>
                         </li>
-                        <li className="navbar-item nav-link">|</li>
                         <li className="navbar-item">
                             <Link to="/logout" className="nav-link">Logout</Link>
                         </li>
