@@ -49,30 +49,28 @@ export default class Signin extends Component {
 
     render() {
         return (
-            <div className="container text-center mt-5">
-                <h3>Sign in</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group row justify-content-center">
-                        <div className="col-sm-12 col-md-6 col-lg-4">
-                            <label className="sr-only">Email</label>
-                            <input required type="email" className="form-control" placeholder="Email" autoFocus
-                                value={this.state.email} onChange={this.onChangeEmail} />
-                        </div>
+            <div className="row justify-content-center">
+                <div className="col-lg-5 col-md-7 col-sm-10 col-12 align-self-end">
+                    <div className="card card-container" style={{padding: "40px 40px", backgroundColor: "#f7f7f7"}}>
+                        <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Sign in</h3>
+                        <form onSubmit={this.onSubmit}>
+                            <div className="form-group">
+                                    <label className="sr-only">Email</label>
+                                    <input required type="email" className="form-control" placeholder="Email" autoFocus
+                                        value={this.state.email} onChange={this.onChangeEmail} />
+                            </div>
+                            <div className="form-group">
+                                    <label className="sr-only">Password</label>
+                                    <input required type="password" className="form-control" placeholder="Password"
+                                        value={this.state.password} onChange={this.onChangePassword} />
+                            </div>
+                            {this.state.errorMessage && <p style={{ color: "red" }}>{this.state.errorMessage}</p> }
+                            <div className="form-group">
+                                    <input type="submit" value="Sign in" className="btn btn-primary btn-block" />
+                            </div>
+                        </form>
                     </div>
-                    <div className="form-group row justify-content-center">
-                        <div className="col-sm-12 col-md-6 col-lg-4">
-                            <label className="sr-only">Password</label>
-                            <input required type="password" className="form-control" placeholder="Password"
-                                value={this.state.password} onChange={this.onChangePassword} />
-                        </div>
-                    </div>
-                    {this.state.errorMessage && <p style={{ color: "red" }}>{this.state.errorMessage}</p> }
-                    <div className="form-group row justify-content-center">
-                        <div className="col-sm-12 col-md-6 col-lg-4">
-                            <input type="submit" value="Sign in" className="btn btn-lg btn-primary" />
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         );
     }
