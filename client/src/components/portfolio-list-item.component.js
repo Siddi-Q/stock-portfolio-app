@@ -16,10 +16,11 @@ export default class PortfolioListItem extends Component {
 
     render() {
         return (
-        <li style={this.chooseStyle(this.props.item.performance)} className="list-group-item d-flex justify-content-between align-items-center">
-            {this.props.item.ticker} - {this.props.item.quantity} {this.props.item.quantity > 1 ? "Shares" : "Share"}
-            <span>${this.props.item.totalPrice}</span>
-        </li>
+            <tr style={this.chooseStyle(this.props.item.performance)}>
+                <th>{this.props.item.ticker}</th>
+                <td>{this.props.item.quantity} {this.props.item.quantity > 1 ? "Shares" : "Share"}</td>
+                <td>${this.props.item.totalPrice.toFixed(2)}</td>
+            </tr>
         );
     }
 }
