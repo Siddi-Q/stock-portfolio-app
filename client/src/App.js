@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.js";
 
 import Navbar from "./components/navbar.component";
 import PrivateNavbar from "./components/privateNavbar.component";
