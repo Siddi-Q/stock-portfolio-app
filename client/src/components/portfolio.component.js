@@ -12,7 +12,8 @@ export default class Portfolio extends Component {
 
         this.handleTickerChange = this.handleTickerChange.bind(this);
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBuySubmit = this.handleBuySubmit.bind(this);
+        this.handleSellSubmit = this.handleSellSubmit.bind(this);
 
         this.state = {
             ticker: '',
@@ -52,7 +53,7 @@ export default class Portfolio extends Component {
         });
     }
 
-    async handleSubmit() {
+    async handleBuySubmit() {
         const newItem = {
             ticker: this.state.ticker,
             quantity: this.state.quantity
@@ -60,6 +61,35 @@ export default class Portfolio extends Component {
         
         try {
             await axios.post('/buy', newItem, {
+                headers: {Authorization: sessionStorage.token}
+            });
+
+            const res = await axios.get('/portfolio', {
+                headers: {Authorization: sessionStorage.token}
+            });
+    
+            const {portfolioList, balance, totalPortfolioPrice} = res.data;
+            this.setState({
+                ticker: '',
+                quantity: '',
+                portfolioList, 
+                balance, 
+                totalPortfolioPrice
+            });
+        }
+        catch {
+            this.setState({errorMessage: "An error occurred. Try again!"});
+        }
+    }
+
+    async handleSellSubmit() {
+        const newItem = {
+            ticker: this.state.ticker,
+            quantity: this.state.quantity
+        };
+        
+        try {
+            await axios.post('/sell', newItem, {
                 headers: {Authorization: sessionStorage.token}
             });
 
@@ -102,7 +132,8 @@ export default class Portfolio extends Component {
                             errorMessage={this.state.errorMessage}
                             onTickerChange={this.handleTickerChange}
                             onQuantityChange={this.handleQuantityChange}
-                            onSubmit={this.handleSubmit}/>
+                            onBuySubmit={this.handleBuySubmit}
+                            onSellSubmit={this.handleSellSubmit}/>
                     </div>
                 </div>
             </div>
