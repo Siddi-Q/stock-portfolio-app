@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
+import { register } from '../../services/auth.service';
 
 export default function Register(props) {
     const [name, setName] = useState('');
@@ -19,23 +20,16 @@ export default function Register(props) {
         setPassword(event.target.value);
     }
 
-    async function onSubmit(event) {
+    function onSubmit(event) {
         event.preventDefault();
 
-        const userInfo = {
-            name,
-            email,
-            password
-        }
-
-        try {
-            const res = await axios.post('/register', userInfo); // update url
-            sessionStorage.setItem('token', res.data.authToken);
+        register(name, email, password)
+        .then(() => {
             props.setIsAuth(true);
-        }
-        catch (error) {
+        })
+        .catch(() => {
             setErrorMessage("Email is in use!");
-        }
+        })
     }
 
     return (
