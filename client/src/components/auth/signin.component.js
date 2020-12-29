@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+
+import { signin } from '../../services/auth.service';
 
 export default function Signin(props) {
     const [email, setEmail] = useState('');
@@ -15,22 +16,16 @@ export default function Signin(props) {
         setPassword(event.target.value);
     }
 
-    async function onSubmit(event) {
+    function onSubmit(event) {
         event.preventDefault();
 
-        const userCredentials = {
-            email,
-            password
-        }
-
-        try {
-            const res = await axios.post('/signin', userCredentials); // update url
-            sessionStorage.setItem('token', res.data.authToken);
+        signin(email, password)
+        .then(() => {
             props.setIsAuth(true);
-        }
-        catch (error) {
+        })
+        .catch((error) => {
             setErrorMessage(error.response.data.message);
-        }
+        })
     }
 
     return (
