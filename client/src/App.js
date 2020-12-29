@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,21 +11,19 @@ import Register from "./components/auth/register.component";
 import Portfolio from "./components/portfolio/portfolio.component";
 import TransactionsList from "./components/transactions/transactions-list.component"
 import Logout from './components/auth/logout.component';
+import { verify } from './services/auth.service';
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    try {
-      axios.post('/verify', null, {
-        headers: {Authorization: sessionStorage.token}
-      }).then(res => {
-        res ? setIsAuth(true) : setIsAuth(false);
-      });
-    }
-    catch (error) {
+    verify()
+    .then(res => {
+      res ? setIsAuth(true) : setIsAuth(false);
+    })
+    .catch(error => {
       console.error(error);
-    }
+    })
   }, []);
 
   return (
