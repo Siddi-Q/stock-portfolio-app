@@ -5,13 +5,13 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 
-import Navbar from "./components/navbar.component";
-import PrivateNavbar from "./components/privateNavbar.component";
-import Signin from "./components/signin.component";
-import Register from "./components/register.component";
-import Portfolio from "./components/portfolio.component";
-import TransactionsList from "./components/transactions-list.component"
-import Logout from './components/logout.component';
+import Navbar from "./components/navbars/navbar.component";
+import PrivateNavbar from "./components/navbars/privateNavbar.component";
+import Signin from "./components/auth/signin.component";
+import Register from "./components/auth/register.component";
+import Portfolio from "./components/portfolio/portfolio.component";
+import TransactionsList from "./components/transactions/transactions-list.component"
+import Logout from './components/auth/logout.component';
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);

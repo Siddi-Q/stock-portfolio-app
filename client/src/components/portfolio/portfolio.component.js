@@ -4,7 +4,7 @@ import axios from 'axios';
 import PortfolioList from './portfolio-list.component';
 import TransactionForm from './transaction-form.component';
 
-import "../styles/styles.css"
+import "../../styles/styles.css"
 
 export default function Portfolio() {
     const [ticker, setTicker] = useState('');
