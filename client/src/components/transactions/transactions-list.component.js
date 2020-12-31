@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import TransactionsListItem from './transactions-list-item.component';
+
+import { getTransactions } from '../../services/user.service';
 
 export default function TransactionsList() {
     const [transactionsList, setTransactionsList] = useState([]);
 
     useEffect(() => {
-        try {
-            axios.get('/transactions',{
-                headers: {Authorization: sessionStorage.token}
-            }).then(res => {
-                setTransactionsList(res.data);
-            });
-        }
-        catch (error) {
+        getTransactions()
+        .then(res => {
+            setTransactionsList(res.data);
+        })
+        .catch(error => {
             console.error(error);
-        }
+        })
     }, []);
 
     return (
