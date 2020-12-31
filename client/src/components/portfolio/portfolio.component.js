@@ -4,6 +4,8 @@ import axios from 'axios';
 import PortfolioList from './portfolio-list.component';
 import TransactionForm from './transaction-form.component';
 
+import { getPortfolio } from '../../services/user.service';
+
 import "../../styles/styles.css"
 
 export default function Portfolio() {
@@ -15,19 +17,16 @@ export default function Portfolio() {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        try {
-            axios.get('/portfolio', {
-                headers: {Authorization: sessionStorage.token}
-            }).then(res => {
-                const {portfolioList, balance, totalPortfolioPrice} = res.data;
-                setPortfolioList(portfolioList);
-                setBalance(balance);
-                setTotalPortfolioPrice(totalPortfolioPrice);
-            });
-        }
-        catch (error) {
+        getPortfolio()
+        .then(res => {
+            const {portfolioList, balance, totalPortfolioPrice} = res.data;
+            setPortfolioList(portfolioList);
+            setBalance(balance);
+            setTotalPortfolioPrice(totalPortfolioPrice);
+        })
+        .catch(error => {
             console.error(error);
-        }
+        })
     }, []);
 
     function handleTickerChange(ticker) {
@@ -49,9 +48,7 @@ export default function Portfolio() {
                 headers: {Authorization: sessionStorage.token}
             });
 
-            const res = await axios.get('/portfolio', {
-                headers: {Authorization: sessionStorage.token}
-            });
+            const res = await getPortfolio();
     
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
             setTicker('');
@@ -76,9 +73,7 @@ export default function Portfolio() {
                 headers: {Authorization: sessionStorage.token}
             });
 
-            const res = await axios.get('/portfolio', {
-                headers: {Authorization: sessionStorage.token}
-            });
+            const res = await getPortfolio();
     
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
             setTicker('');
