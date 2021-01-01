@@ -8,15 +8,15 @@ export default function Signin(props) {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    function onChangeEmail(event) {
+    function handleEmailChange(event) {
         setEmail(event.target.value);
     }
 
-    function onChangePassword(event) {
+    function handlePasswordChange(event) {
         setPassword(event.target.value);
     }
 
-    function onSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
 
         signin(email, password)
@@ -33,16 +33,16 @@ export default function Signin(props) {
             <div className="col-lg-5 col-md-7 col-sm-10 col-12 align-self-end">
                 <div className="card card-container" style={{padding: "40px 40px", backgroundColor: "#f7f7f7"}}>
                     <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Sign in</h3>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className="form-group">
                                 <label className="sr-only">Email</label>
                                 <input required type="email" className="form-control" placeholder="Email" autoFocus
-                                    value={email} onChange={onChangeEmail} />
+                                    value={email} onChange={handleEmailChange} />
                         </div>
                         <div className="form-group">
                                 <label className="sr-only">Password</label>
                                 <input required type="password" className="form-control" placeholder="Password"
-                                    value={password} onChange={onChangePassword} />
+                                    value={password} onChange={handlePasswordChange} />
                         </div>
                         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p> }
                         <div className="form-group">
