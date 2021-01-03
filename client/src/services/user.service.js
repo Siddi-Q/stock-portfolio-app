@@ -11,3 +11,14 @@ export const getTransactions = () => {
         headers: {Authorization: sessionStorage.token}
     });
 };
+
+export const sell = (ticker, quantity) => {
+    const newItem = {
+        ticker,
+        quantity
+    };
+    
+    await axios.post('/sell', newItem, {
+        headers: {Authorization: sessionStorage.token}
+    });
+}
