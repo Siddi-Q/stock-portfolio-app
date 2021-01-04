@@ -12,7 +12,7 @@ export const getTransactions = () => {
     });
 };
 
-export const sell = (ticker, quantity) => {
+export const sell = async (ticker, quantity) => {
     const newItem = {
         ticker,
         quantity

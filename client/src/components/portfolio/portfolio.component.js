@@ -4,7 +4,7 @@ import axios from 'axios';
 import PortfolioList from './portfolio-list.component';
 import TransactionForm from './transaction-form.component';
 
-import { getPortfolio } from '../../services/user.service';
+import { getPortfolio, sell } from '../../services/user.service';
 
 import "../../styles/styles.css"
 
@@ -63,15 +63,8 @@ export default function Portfolio() {
     }
 
     async function handleSellSubmit() {
-        const newItem = {
-            ticker,
-            quantity
-        };
-        
         try {
-            await axios.post('/sell', newItem, {
-                headers: {Authorization: sessionStorage.token}
-            });
+            await sell(ticker, quantity);
 
             const res = await getPortfolio();
     
