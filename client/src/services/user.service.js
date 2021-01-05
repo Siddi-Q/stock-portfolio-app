@@ -22,3 +22,14 @@ export const sell = async (ticker, quantity) => {
         headers: {Authorization: sessionStorage.token}
     });
 }
+
+export const buy = async (ticker, quantity) => {
+    const newItem = {
+        ticker,
+        quantity
+    };
+
+    await axios.post('/buy', newItem, {
+        headers: {Authorization: sessionStorage.token}
+    });
+}
