@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import PortfolioList from './portfolio-list.component';
 import TransactionForm from './transaction-form.component';
 
-import { getPortfolio, sell } from '../../services/user.service';
+import { buy, getPortfolio, sell } from '../../services/user.service';
 
 import "../../styles/styles.css"
 
@@ -38,15 +37,8 @@ export default function Portfolio() {
     }
 
     async function handleBuySubmit() {
-        const newItem = {
-            ticker,
-            quantity
-        };
-        
         try {
-            await axios.post('/buy', newItem, {
-                headers: {Authorization: sessionStorage.token}
-            });
+            await buy(ticker, quantity);
 
             const res = await getPortfolio();
     
