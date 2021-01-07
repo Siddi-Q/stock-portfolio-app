@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { register } from '../../services/auth.service';
 
@@ -58,6 +59,7 @@ export default function Register(props) {
                                 <input type="submit" value="Submit" className="btn btn-primary btn-block" />
                         </div>
                     </form>
+                    <Link to="/signin">Have an account? Sign in</Link>
                 </div>
             </div>
         </div>
