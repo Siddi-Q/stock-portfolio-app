@@ -9,17 +9,11 @@ export default function Register(props) {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    function handleNameChange(event) {
-        setName(event.target.value);
-    }
+    const handleNameChange = event => setName(event.target.value);
 
-    function handleEmailChange(event) {
-        setEmail(event.target.value);
-    }
+    const handleEmailChange = event => setEmail(event.target.value);
 
-    function handlePasswordChange(event) {
-        setPassword(event.target.value);
-    }
+    const handlePasswordChange = event => setPassword(event.target.value);
 
     function handleSubmit(event) {
         event.preventDefault();
