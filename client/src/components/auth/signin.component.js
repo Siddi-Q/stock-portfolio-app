@@ -8,13 +8,9 @@ export default function Signin(props) {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    function handleEmailChange(event) {
-        setEmail(event.target.value);
-    }
+    const handleEmailChange = event => setEmail(event.target.value);
 
-    function handlePasswordChange(event) {
-        setPassword(event.target.value);
-    }
+    const handlePasswordChange = event => setPassword(event.target.value);
 
     function handleSubmit(event) {
         event.preventDefault();
