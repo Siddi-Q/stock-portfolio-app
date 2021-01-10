@@ -28,13 +28,9 @@ export default function Portfolio() {
         })
     }, []);
 
-    function handleTickerChange(ticker) {
-        setTicker(ticker);
-    }
+    const handleTickerChange = ticker => setTicker(ticker);
 
-    function handleQuantityChange(quantity) {
-        setQuantity(quantity);
-    }
+    const handleQuantityChange = quantity => setQuantity(quantity);
 
     async function handleBuySubmit() {
         try {
