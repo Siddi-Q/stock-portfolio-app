@@ -1,13 +1,9 @@
 import React  from 'react';
 
 export default function TransactionForm(props) {
-    function handleTickerChange(event) {
-        props.onTickerChange(event.target.value);
-    }
+    const handleTickerChange = event => props.onTickerChange(event.target.value);
 
-    function handleQuantityChange(event) {
-        props.onQuantityChange(event.target.value);
-    }
+    const handleQuantityChange = event => props.onQuantityChange(event.target.value);
 
     function handleBuySubmit(event) {
         event.preventDefault();
