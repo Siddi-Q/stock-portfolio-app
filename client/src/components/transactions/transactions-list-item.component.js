@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function TransactionsListItem(props) {
+function TransactionsListItem(props) {
     return(
         <tr>
             <td>{props.item.type}</td>
@@ -10,3 +11,15 @@ export default function TransactionsListItem(props) {
         </tr>
     );
 }
+
+
+TransactionsListItem.propTypes = {
+    item: PropTypes.shape({
+        type: PropTypes.string,
+        ticker: PropTypes.string,
+        quantity: PropTypes.number,
+        price: PropTypes.number
+    }).isRequired
+}
+
+export default TransactionsListItem;
