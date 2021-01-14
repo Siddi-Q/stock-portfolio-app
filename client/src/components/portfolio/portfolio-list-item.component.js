@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function PortfolioListItem(props) {
+function PortfolioListItem(props) {
     function chooseStyle(performance) {
         if(performance === "less") {
             return {color: 'red'};
@@ -21,3 +22,14 @@ export default function PortfolioListItem(props) {
         </tr>
     );
 }
+
+PortfolioListItem.propTypes = {
+    item: PropTypes.shape({
+        performance: PropTypes.string,
+        ticker: PropTypes.string,
+        quantity: PropTypes.number,
+        totalPrice: PropTypes.number
+    }).isRequired
+}
+
+export default PortfolioListItem;
