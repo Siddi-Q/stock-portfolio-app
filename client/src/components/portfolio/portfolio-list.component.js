@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import PortfolioListItem from './portfolio-list-item.component';
 
@@ -10,4 +12,8 @@ export default function PortfolioList(props) {
                 item={item}/>
         ))
     );
+}
+
+PortfolioList.propTypes = {
+    portfolioList: PropTypes.array.isRequired
 }
