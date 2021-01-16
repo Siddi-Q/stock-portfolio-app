@@ -1,6 +1,7 @@
 import React  from 'react';
+import PropTypes from 'prop-types';
 
-export default function TransactionForm(props) {
+function TransactionForm(props) {
     const handleTickerChange = event => props.onTickerChange(event.target.value);
 
     const handleQuantityChange = event => props.onQuantityChange(event.target.value);
@@ -67,3 +68,16 @@ export default function TransactionForm(props) {
         </div>
     );
 }
+
+TransactionForm.propTypes = {
+    balance: PropTypes.number.isRequired,
+    ticker: PropTypes.string.isRequired,
+    quantity: PropTypes.string.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+    onTickerChange: PropTypes.func.isRequired,
+    onQuantityChange: PropTypes.func.isRequired,
+    onBuySubmit: PropTypes.func.isRequired,
+    onSellSubmit: PropTypes.func.isRequired
+}
+
+export default TransactionForm;
