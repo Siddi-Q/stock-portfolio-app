@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { logout } from '../../services/auth.service';
 
-export default function Logout(props) {
+function Logout(props) {
     useEffect(() => {
         logout()
         .then(() => {
@@ -17,3 +18,9 @@ export default function Logout(props) {
         <div>Logging out!</div>
     );
 }
+
+Logout.propTypes = {
+    setIsAuth: PropTypes.func.isRequired
+}
+
+export default Logout;
