@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { register } from '../../services/auth.service';
 
-export default function Register(props) {
+function Register(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -59,3 +60,9 @@ export default function Register(props) {
         </div>
     );
 }
+
+Register.propTypes = {
+    setIsAuth: PropTypes.func.isRequired
+}
+
+export default Register;
