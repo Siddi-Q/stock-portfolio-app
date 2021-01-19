@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PortfolioListItem from './portfolio-list-item.component';
 
-export default function PortfolioList(props) {
+function PortfolioList(props) {
     return (
         props.portfolioList.map((item, index) => (
             <PortfolioListItem
@@ -17,3 +17,5 @@ export default function PortfolioList(props) {
 PortfolioList.propTypes = {
     portfolioList: PropTypes.array.isRequired
 }
+
+export default PortfolioList;
