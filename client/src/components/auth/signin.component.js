@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { signin } from '../../services/auth.service';
 
-export default function Signin(props) {
+function Signin(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -51,3 +52,9 @@ export default function Signin(props) {
         </div>
     );
 }
+
+Signin.propTypes = {
+    setIsAuth: PropTypes.func.isRequired
+}
+
+export default Signin;
