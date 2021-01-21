@@ -25,10 +25,10 @@ function PortfolioListItem(props) {
 
 PortfolioListItem.propTypes = {
     item: PropTypes.shape({
-        performance: PropTypes.string,
-        ticker: PropTypes.string,
-        quantity: PropTypes.number,
-        totalPrice: PropTypes.number
+        performance: PropTypes.string.isRequired,
+        ticker: PropTypes.string.isRequired,
+        quantity: PropTypes.number.isRequired,
+        totalPrice: PropTypes.number.isRequired
     }).isRequired
 }
 
