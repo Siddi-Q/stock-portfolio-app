@@ -15,10 +15,10 @@ function TransactionsListItem(props) {
 
 TransactionsListItem.propTypes = {
     item: PropTypes.shape({
-        type: PropTypes.string,
-        ticker: PropTypes.string,
-        quantity: PropTypes.number,
-        price: PropTypes.number
+        type: PropTypes.string.isRequired,
+        ticker: PropTypes.string.isRequired,
+        quantity: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired
     }).isRequired
 }
 
