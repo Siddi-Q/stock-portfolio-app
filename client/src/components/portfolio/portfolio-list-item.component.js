@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 
 function PortfolioListItem(props) {
     function chooseStyle(performance) {
-        if(performance === "less") {
-            return {color: 'red'};
-        }
-        else if(performance === "equal") {
-            return {color: 'gray'};
-        }
-        else {
-            return {color: 'green'};
-        }
+        const performanceColorObj = {"less": "red", "equal": "gray", "greater": "green"};
+        return {color: performanceColorObj[performance] }
+        // if(performance === "less") {
+        //     return {color: 'red'};
+        // }
+        // else if(performance === "equal") {
+        //     return {color: 'gray'};
+        // }
+        // else {
+        //     return {color: 'green'};
+        // }
     }
 
     return (
