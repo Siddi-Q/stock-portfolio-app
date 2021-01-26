@@ -18,11 +18,12 @@ router.post('/register', async (req, res) => {
 
 router.post('/signin', async (req, res) => {
     try {
-        const user = await User.findByCredentials(req.body.email, req.body.password);
+        const { email, password } = req.body;
+        const user = await User.findByCredentials(email, password);
         const authToken = await user.generateAuthToken();
         res.send({ user, authToken });
     } catch (error) {
-        res.status(400).send({message: "Incorrect username or password!"});
+        res.status(400).send({message: "Incorrect email or password!"});
     }
 });
 
