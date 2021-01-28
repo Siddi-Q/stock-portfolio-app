@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
     },
     portfolio: { // Todo: update later
         type: Array,
-        defaul: [],
+        default: [],
         required: true
     },
     tokens: [{
