@@ -13,7 +13,7 @@ function Signin(props) {
 
     const handlePasswordChange = event => setPassword(event.target.value);
 
-    const  handleSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
 
         signin(email, password)

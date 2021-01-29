@@ -16,7 +16,7 @@ function Register(props) {
 
     const handlePasswordChange = event => setPassword(event.target.value);
 
-    function handleSubmit(event) {
+    const handleSubmit = event => {
         event.preventDefault();
 
         register(name, email, password)
