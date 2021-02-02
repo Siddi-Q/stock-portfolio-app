@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export const getPortfolio = () => {
     return axios.get('/portfolio', {
-        headers: {Authorization: sessionStorage.token}
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 };
 
 export const getTransactions = () => {
     return axios.get('/transactions',{
-        headers: {Authorization: sessionStorage.token}
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 };
 
@@ -19,7 +19,7 @@ export const sell = async (ticker, quantity) => {
     };
     
     await axios.post('/sell', newItem, {
-        headers: {Authorization: sessionStorage.token}
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 }
 
@@ -30,6 +30,6 @@ export const buy = async (ticker, quantity) => {
     };
 
     await axios.post('/buy', newItem, {
-        headers: {Authorization: sessionStorage.token}
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 }

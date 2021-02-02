@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const verify = () => {
     return axios.post('/verify', null, {
-        headers: {Authorization: sessionStorage.token}
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 };
 
@@ -29,7 +29,7 @@ export const signin = async (email, password) => {
 
 export const logout = async () => {
     await axios.post('/logout', null, {
-        headers: {Authorization: sessionStorage.token}
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
     sessionStorage.removeItem("token");
 }
