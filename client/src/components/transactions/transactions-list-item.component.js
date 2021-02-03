@@ -12,7 +12,6 @@ function TransactionsListItem(props) {
     );
 }
 
-
 TransactionsListItem.propTypes = {
     item: PropTypes.shape({
         type: PropTypes.string.isRequired,
