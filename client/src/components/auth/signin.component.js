@@ -34,16 +34,14 @@ function Signin(props) {
                             <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Sign in</h3>
                             <Form>
                                 <div className="form-group">
-                                    <label className="sr-only">Email</label>
-                                    <Field 
-                                        id="email" name="email" type="email" 
+                                    <label className="sr-only" for="email">Email</label>
+                                    <Field id="email" name="email" type="email" 
                                         className="form-control" placeholder="Email"/>
                                     <ErrorMessage component="div" name="email" style={{color: "red"}} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="sr-only">Password</label>
-                                    <Field 
-                                        id="password" name="password" type="password" 
+                                    <label className="sr-only" for="password">Password</label>
+                                    <Field id="password" name="password" type="password" 
                                         className="form-control" placeholder="Password"/>
                                     <ErrorMessage component="div" name="password" style={{color: "red"}}/>
                                 </div>
