@@ -34,20 +34,20 @@ function Signin(props) {
                             <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Sign in</h3>
                             <Form>
                                 <div className="form-group">
-                                    <label className="sr-only" for="email">Email</label>
+                                    <label className="sr-only" htmlFor="email">Email</label>
                                     <Field id="email" name="email" type="email" 
                                         className="form-control" placeholder="Email"/>
                                     <ErrorMessage component="div" name="email" style={{color: "red"}} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="sr-only" for="password">Password</label>
+                                    <label className="sr-only" htmlFor="password">Password</label>
                                     <Field id="password" name="password" type="password" 
                                         className="form-control" placeholder="Password"/>
                                     <ErrorMessage component="div" name="password" style={{color: "red"}}/>
                                 </div>
                                 {formik.status && <div className="alert alert-danger" role="alert">{formik.status}</div> }
                                 <div className="form-group">
-                                    <input type="submit" value="Sign in" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.email) || !Boolean(formik.values.password) || !formik.isValid || (formik.isSubmitting)} />
+                                    <input type="submit" value="Sign in" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.email) || !Boolean(formik.values.password) || !formik.isValid || formik.isSubmitting} />
                                 </div>
                             </Form>
                             <Link to="/register">Don't have an account? Sign Up</Link>
