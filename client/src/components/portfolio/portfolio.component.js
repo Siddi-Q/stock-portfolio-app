@@ -14,7 +14,9 @@ export default function Portfolio() {
     const [balance, setBalance] = useState(0);
     const [totalPortfolioPrice, setTotalPortfolioPrice] = useState(0);
     const [errorMessage, setErrorMessage] = useState('');
-
+    
+    const [loading, setLoading] = useState(true);
+    
     useEffect(() => {
         getPortfolio()
         .then(res => {
@@ -22,6 +24,7 @@ export default function Portfolio() {
             setPortfolioList(portfolioList);
             setBalance(balance);
             setTotalPortfolioPrice(totalPortfolioPrice);
+            setLoading(false);
         })
         .catch(error => {
             console.error(error);
@@ -68,30 +71,41 @@ export default function Portfolio() {
         }
     }
 
-    return (
-        <div>
-            <h1 id="portfolio-title">Portfolio (${totalPortfolioPrice.toFixed(2)})</h1>
-            <br />
-            <div className="row justify-content-center">
-                <div className="col-sm-12 col-md-6 col-lg-8">
-                    <table className="table table-hover">
-                        <tbody>
-                            <PortfolioList portfolioList={portfolioList}/>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                    <TransactionForm
-                        balance={balance}
-                        ticker={ticker}
-                        quantity={quantity}
-                        errorMessage={errorMessage}
-                        onTickerChange={handleTickerChange}
-                        onQuantityChange={handleQuantityChange}
-                        onBuySubmit={handleBuySubmit}
-                        onSellSubmit={handleSellSubmit}/>
+    if(loading) {
+        return (
+            <div className="d-flex justify-content-center">
+                <div className="spinner-border" style={{width: "10rem", height: "10rem"}} role="status">
+                    <span className="sr-only">Loading...</span>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+    else {
+        return (
+            <div>
+                <h1 id="portfolio-title">Portfolio (${totalPortfolioPrice.toFixed(2)})</h1>
+                <br />
+                <div className="row justify-content-center">
+                    <div className="col-sm-12 col-md-6 col-lg-8">
+                        <table className="table table-hover">
+                            <tbody>
+                                <PortfolioList portfolioList={portfolioList}/>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="col-sm-12 col-md-6 col-lg-4">
+                        <TransactionForm
+                            balance={balance}
+                            ticker={ticker}
+                            quantity={quantity}
+                            errorMessage={errorMessage}
+                            onTickerChange={handleTickerChange}
+                            onQuantityChange={handleQuantityChange}
+                            onBuySubmit={handleBuySubmit}
+                            onSellSubmit={handleSellSubmit}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
