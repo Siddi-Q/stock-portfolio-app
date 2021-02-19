@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import LoadingSpinner from '../common/loading-spinner.component';
 import PortfolioList from './portfolio-list.component';
 import TransactionForm from './transaction-form.component';
 
@@ -73,11 +74,7 @@ export default function Portfolio() {
 
     if(loading) {
         return (
-            <div className="row justify-content-center">
-                <div className="spinner-border" style={{width: "10rem", height: "10rem"}} role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
-            </div>
+            <LoadingSpinner/>
         );
     }
     else {
