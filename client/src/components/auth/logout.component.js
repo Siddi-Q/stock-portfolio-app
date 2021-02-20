@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import LoadingSpinner from '../common/loading-spinner.component';
+
 import { logout } from '../../services/auth.service';
 
 function Logout(props) {
@@ -15,7 +17,7 @@ function Logout(props) {
     });
 
     return (
-        <div>Logging out!</div>
+        <LoadingSpinner />
     );
 }
 
