@@ -1,6 +1,7 @@
 import React  from 'react';
 import PropTypes from 'prop-types';
 import BuyForm from './buyForm.component';
+import SellForm from './sellForm.component';
 
 function TransactionForm(props) {
     const handleTickerChange = event => props.onTickerChange(event.target.value);
@@ -38,22 +39,12 @@ function TransactionForm(props) {
                 </div>
                 <div className="tab-pane fade" id="nav-sell" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <br />
-                    <form onSubmit={handleSellSubmit}>
-                        <div className="form-group">
-                            <label className="sr-only">Ticker</label>
-                            <input required type="text" className="form-control" placeholder="Ticker" autoFocus
-                                value={props.ticker} onChange={handleTickerChange} />
-                        </div>
-                        <div className="form-group">
-                            <label className="sr-only">Quantity</label>
-                            <input required type="number" className="form-control" placeholder="Quantity" min="1"
-                                value={props.quantity} onChange={handleQuantityChange} />
-                        </div>
-                        {props.errorMessage && <p style={{ color: "red" }}>{props.errorMessage}</p> }
-                        <div className="form-group">
-                            <input type="submit" value="Sell" className="btn btn-primary btn-block" />
-                        </div>
-                    </form>
+                    <SellForm 
+                        handleTickerChange={handleTickerChange} 
+                        handleQuantityChange={handleQuantityChange}
+                        handleSellSubmit={handleSellSubmit}
+                        {...props}
+                    />
                 </div>
             </div>
         </div>
