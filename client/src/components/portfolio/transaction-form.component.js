@@ -4,20 +4,6 @@ import BuyForm from './buyForm.component';
 import SellForm from './sellForm.component';
 
 function TransactionForm(props) {
-    const handleTickerChange = event => props.onTickerChange(event.target.value);
-
-    const handleQuantityChange = event => props.onQuantityChange(event.target.value);
-
-    function handleBuySubmit(event) {
-        event.preventDefault();
-        props.onBuySubmit();
-    }
-
-    function handleSellSubmit(event) {
-        event.preventDefault();
-        props.onSellSubmit();
-    }
-    
     return (
         <div className="card card-container" style={{padding: "40px 40px", backgroundColor: "#f7f7f7"}}>
             <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Cash - ${props.balance.toFixed(2)}</h3>
@@ -31,18 +17,12 @@ function TransactionForm(props) {
                 <div className="tab-pane fade show active" id="nav-buy" role="tabpanel" aria-labelledby="nav-home-tab">
                     <br />
                     <BuyForm 
-                        handleTickerChange={handleTickerChange} 
-                        handleQuantityChange={handleQuantityChange}
-                        handleBuySubmit={handleBuySubmit}
                         {...props}
                     />
                 </div>
                 <div className="tab-pane fade" id="nav-sell" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <br />
                     <SellForm 
-                        handleTickerChange={handleTickerChange} 
-                        handleQuantityChange={handleQuantityChange}
-                        handleSellSubmit={handleSellSubmit}
                         {...props}
                     />
                 </div>
@@ -56,10 +36,10 @@ TransactionForm.propTypes = {
     ticker: PropTypes.string.isRequired,
     quantity: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    onTickerChange: PropTypes.func.isRequired,
-    onQuantityChange: PropTypes.func.isRequired,
-    onBuySubmit: PropTypes.func.isRequired,
-    onSellSubmit: PropTypes.func.isRequired
+    handleTickerChange: PropTypes.func.isRequired,
+    handleQuantityChange: PropTypes.func.isRequired,
+    handleBuySubmit: PropTypes.func.isRequired,
+    handleSellSubmit: PropTypes.func.isRequired
 }
 
 export default TransactionForm;

@@ -32,11 +32,11 @@ export default function Portfolio() {
         })
     }, []);
 
-    const handleTickerChange = ticker => setTicker(ticker);
+    const handleTickerChange = event => setTicker(event.target.value);
+    const handleQuantityChange = event => setQuantity(event.target.value);
 
-    const handleQuantityChange = quantity => setQuantity(quantity);
-
-    async function handleBuySubmit() {
+    async function handleBuySubmit(event) {
+        event.preventDefault();
         try {
             await buy(ticker, quantity);
 
@@ -54,7 +54,8 @@ export default function Portfolio() {
         }
     }
 
-    async function handleSellSubmit() {
+    async function handleSellSubmit(event) {
+        event.preventDefault();
         try {
             await sell(ticker, quantity);
 
@@ -96,10 +97,10 @@ export default function Portfolio() {
                             ticker={ticker}
                             quantity={quantity}
                             errorMessage={errorMessage}
-                            onTickerChange={handleTickerChange}
-                            onQuantityChange={handleQuantityChange}
-                            onBuySubmit={handleBuySubmit}
-                            onSellSubmit={handleSellSubmit}/>
+                            handleTickerChange={handleTickerChange}
+                            handleQuantityChange={handleQuantityChange}
+                            handleBuySubmit={handleBuySubmit}
+                            handleSellSubmit={handleSellSubmit}/>
                     </div>
                 </div>
             </div>
