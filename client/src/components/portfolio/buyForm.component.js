@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function BuyForm(props) {
     return (
@@ -19,6 +20,17 @@ function BuyForm(props) {
             </div>
         </form>
     );
+}
+
+BuyForm.propTypes = {
+    balance: PropTypes.number.isRequired,
+    ticker: PropTypes.string.isRequired,
+    quantity: PropTypes.string.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+    handleTickerChange: PropTypes.func.isRequired,
+    handleQuantityChange: PropTypes.func.isRequired,
+    handleBuySubmit: PropTypes.func.isRequired,
+    handleSellSubmit: PropTypes.func.isRequired
 }
 
 export default BuyForm;
