@@ -7,12 +7,12 @@ function BuyForm(props) {
             <div className="form-group">
                 <label className="sr-only">Ticker</label>
                 <input required type="text" className="form-control" placeholder="Ticker" autoFocus
-                    value={props.ticker} onChange={props.handleTickerChange} />
+                    value={props.buyTicker} onChange={props.handleBuyTickerChange} />
             </div>
             <div className="form-group">
                 <label className="sr-only">Quantity</label>
                 <input required type="number" className="form-control" placeholder="Quantity" min="1"
-                    value={props.quantity} onChange={props.handleQuantityChange} />
+                    value={props.buyQuantity} onChange={props.handleBuyQuantityChange} />
             </div>
             {props.errorMessage && <p style={{ color: "red" }}>{props.errorMessage}</p> }
             <div className="form-group">
