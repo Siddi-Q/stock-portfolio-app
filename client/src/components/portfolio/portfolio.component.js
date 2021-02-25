@@ -9,8 +9,10 @@ import { buy, getPortfolio, sell } from '../../services/user.service';
 import "../../styles/styles.css"
 
 export default function Portfolio() {
-    const [ticker, setTicker] = useState('');
-    const [quantity, setQuantity] = useState('');
+    const [buyTicker, setBuyTicker] = useState('');
+    const [sellTicker, setSellTicker] = useState('');
+    const [buyQuantity, setBuyQuantity] = useState('');
+    const [sellQuantity, setSellQuantity] = useState('');
     const [portfolioList, setPortfolioList] = useState([]);
     const [balance, setBalance] = useState(0);
     const [totalPortfolioPrice, setTotalPortfolioPrice] = useState(0);
@@ -32,19 +34,21 @@ export default function Portfolio() {
         })
     }, []);
 
-    const handleTickerChange = event => setTicker(event.target.value);
-    const handleQuantityChange = event => setQuantity(event.target.value);
+    const handleBuyTickerChange = event => setBuyTicker(event.target.value);
+    const handleSellTickerChange = event => setSellTicker(event.target.value);
+    const handleBuyQuantityChange = event => setBuyQuantity(event.target.value);
+    const handleSellQuantityChange = event => setSellQuantity(event.target.value);
 
     async function handleBuySubmit(event) {
         event.preventDefault();
         try {
-            await buy(ticker, quantity);
+            await buy(buyTicker, buyQuantity);
 
             const res = await getPortfolio();
     
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
-            setTicker('');
-            setQuantity('');
+            setBuyTicker('');
+            setBuyQuantity('');
             setPortfolioList(portfolioList);
             setBalance(balance);
             setTotalPortfolioPrice(totalPortfolioPrice);
@@ -57,13 +61,13 @@ export default function Portfolio() {
     async function handleSellSubmit(event) {
         event.preventDefault();
         try {
-            await sell(ticker, quantity);
+            await sell(sellTicker, sellQuantity);
 
             const res = await getPortfolio();
     
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
-            setTicker('');
-            setQuantity('');
+            setSellTicker('');
+            setSellQuantity('');
             setPortfolioList(portfolioList);
             setBalance(balance);
             setTotalPortfolioPrice(totalPortfolioPrice);
@@ -94,11 +98,15 @@ export default function Portfolio() {
                     <div className="col-sm-12 col-md-6 col-lg-4">
                         <TransactionForm
                             balance={balance}
-                            ticker={ticker}
-                            quantity={quantity}
+                            buyTicker={buyTicker}
+                            sellTicker={sellTicker}
+                            buyQuantity={buyQuantity}
+                            sellQuantity={sellQuantity}
                             errorMessage={errorMessage}
-                            handleTickerChange={handleTickerChange}
-                            handleQuantityChange={handleQuantityChange}
+                            handleBuyTickerChange={handleBuyTickerChange}
+                            handleSellTickerChange={handleSellTickerChange}
+                            handleBuyQuantityChange={handleBuyQuantityChange}
+                            handleSellQuantityChange={handleSellQuantityChange}
                             handleBuySubmit={handleBuySubmit}
                             handleSellSubmit={handleSellSubmit}/>
                     </div>
