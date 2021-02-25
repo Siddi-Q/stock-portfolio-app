@@ -24,13 +24,17 @@ function BuyForm(props) {
 
 BuyForm.propTypes = {
     balance: PropTypes.number.isRequired,
-    ticker: PropTypes.string.isRequired,
-    quantity: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string.isRequired,
-    handleTickerChange: PropTypes.func.isRequired,
-    handleQuantityChange: PropTypes.func.isRequired,
+    buyTicker: PropTypes.string.isRequired,
+    sellTicker: PropTypes.string.isRequired,
+    buyQuantity: PropTypes.string.isRequired,
+    sellQuantity: PropTypes.string.isRequired,
+    handleBuyTickerChange: PropTypes.func.isRequired,
+    handleSellTickerChange: PropTypes.func.isRequired,
+    handleBuyQuantityChange: PropTypes.func.isRequired,
+    handleSellQuantityChange: PropTypes.func.isRequired,
     handleBuySubmit: PropTypes.func.isRequired,
-    handleSellSubmit: PropTypes.func.isRequired
+    handleSellSubmit: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string.isRequired
 }
 
 export default BuyForm;
