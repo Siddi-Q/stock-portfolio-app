@@ -51,17 +51,11 @@ function SellForm(props) {
 
 SellForm.propTypes = {
     balance: PropTypes.number.isRequired,
-    buyTicker: PropTypes.string.isRequired,
-    sellTicker: PropTypes.string.isRequired,
-    buyQuantity: PropTypes.string.isRequired,
-    sellQuantity: PropTypes.string.isRequired,
-    handleBuyTickerChange: PropTypes.func.isRequired,
-    handleSellTickerChange: PropTypes.func.isRequired,
-    handleBuyQuantityChange: PropTypes.func.isRequired,
-    handleSellQuantityChange: PropTypes.func.isRequired,
-    handleBuySubmit: PropTypes.func.isRequired,
-    handleSellSubmit: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string.isRequired
+    errorMessage: PropTypes.string.isRequired,
+    setBalance: PropTypes.func.isRequired,
+    setErrorMessage: PropTypes.func.isRequired,
+    setPortfolioList: PropTypes.func.isRequired,
+    setTotalPortfolioPrice: PropTypes.func.isRequired
 }
 
 export default SellForm;
