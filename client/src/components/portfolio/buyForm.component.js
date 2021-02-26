@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 import { buy, getPortfolio } from '../../services/user.service';
 
 
 function BuyForm(props) {
-    const [buyTicker, setBuyTicker] = useState('');
-    const [buyQuantity, setBuyQuantity] = useState('');
-
-    const handleBuyTickerChange = event => setBuyTicker(event.target.value);
-    const handleBuyQuantityChange = event => setBuyQuantity(event.target.value);
-
-    async function handleBuySubmit(event) {
-        event.preventDefault();
+    async function handleBuySubmit(values) {
         try {
+            const {buyTicker, buyQuantity} = values;
             await buy(buyTicker, buyQuantity);
 
             const res = await getPortfolio();
-    
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
-            setBuyTicker('');
-            setBuyQuantity('');
+            
             props.setPortfolioList(portfolioList);
             props.setBalance(balance);
             props.setTotalPortfolioPrice(totalPortfolioPrice);
@@ -31,22 +26,35 @@ function BuyForm(props) {
     }
 
     return (
-        <form onSubmit={handleBuySubmit}>
-            <div className="form-group">
-                <label className="sr-only">Ticker</label>
-                <input required type="text" className="form-control" placeholder="Ticker" autoFocus
-                    value={buyTicker} onChange={handleBuyTickerChange} />
-            </div>
-            <div className="form-group">
-                <label className="sr-only">Quantity</label>
-                <input required type="number" className="form-control" placeholder="Quantity" min="1"
-                    value={buyQuantity} onChange={handleBuyQuantityChange} />
-            </div>
-            {props.errorMessage && <p style={{ color: "red" }}>{props.errorMessage}</p> }
-            <div className="form-group">
-                <input type="submit" value="Buy" className="btn btn-primary btn-block" />
-            </div>
-        </form>
+        <Formik
+            initialValues={{buyTicker: '', buyQuantity: ''}}
+            validationSchema={Yup.object({
+                buyTicker: Yup.string().required('Required'),
+                buyQuantity: Yup.number().required('Required')
+            })}
+            onSubmit={(values) => handleBuySubmit(values)}
+        >
+            {formik => (
+                <Form>
+                    <div className="form-group">
+                        <label className="sr-only" htmlFor="buyTicker">Ticker</label>
+                        <Field id="buyTicker" name="buyTicker" type="text" 
+                            className="form-control" placeholder="Ticker"/>
+                        <ErrorMessage component="div" name="buyTicker" style={{color: "red"}} />
+                    </div>
+                    <div className="form-group">
+                        <label className="sr-only" htmlFor="buyQuantity">Quantity</label>
+                        <Field id="buyQuantity" name="buyQuantity" type="number" 
+                            className="form-control" placeholder="Quantity" min="1"/>
+                        <ErrorMessage component="div" name="buyQuantity" style={{color: "red"}} />
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Buy" className="btn btn-primary btn-block" />
+                    </div>
+                </Form>
+                
+            )}
+        </Formik>
     );
 }
 
