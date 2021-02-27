@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 
 import { buy, getPortfolio } from '../../services/user.service';
 
-
 function BuyForm(props) {
     async function handleBuySubmit(values) {
         try {
@@ -52,7 +51,6 @@ function BuyForm(props) {
                         <input type="submit" value="Buy" className="btn btn-primary btn-block" />
                     </div>
                 </Form>
-                
             )}
         </Formik>
     );
