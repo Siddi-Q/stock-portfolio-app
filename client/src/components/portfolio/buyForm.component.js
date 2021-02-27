@@ -20,7 +20,7 @@ function BuyForm(props) {
             props.setTotalPortfolioPrice(totalPortfolioPrice);
         }
         catch {
-            props.setErrorMessage("An error occurred. Try again!");
+            console.log("An error occurred. Try again!");
         }
     }
 
@@ -58,9 +58,7 @@ function BuyForm(props) {
 
 BuyForm.propTypes = {
     balance: PropTypes.number.isRequired,
-    errorMessage: PropTypes.string.isRequired,
     setBalance: PropTypes.func.isRequired,
-    setErrorMessage: PropTypes.func.isRequired,
     setPortfolioList: PropTypes.func.isRequired,
     setTotalPortfolioPrice: PropTypes.func.isRequired
 }

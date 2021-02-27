@@ -12,7 +12,6 @@ export default function Portfolio() {
     const [portfolioList, setPortfolioList] = useState([]);
     const [balance, setBalance] = useState(0);
     const [totalPortfolioPrice, setTotalPortfolioPrice] = useState(0);
-    const [errorMessage, setErrorMessage] = useState('');
     
     const [loading, setLoading] = useState(true);
     
@@ -51,9 +50,7 @@ export default function Portfolio() {
                     <div className="col-sm-12 col-md-6 col-lg-4">
                         <TransactionForm
                             balance={balance}
-                            errorMessage={errorMessage}
                             setBalance={setBalance}
-                            setErrorMessage={setErrorMessage}
                             setPortfolioList={setPortfolioList}
                             setTotalPortfolioPrice={setTotalPortfolioPrice}
                         />

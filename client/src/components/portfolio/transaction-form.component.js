@@ -28,9 +28,7 @@ function TransactionForm(props) {
 
 TransactionForm.propTypes = {
     balance: PropTypes.number.isRequired,
-    errorMessage: PropTypes.string.isRequired,
     setBalance: PropTypes.func.isRequired,
-    setErrorMessage: PropTypes.func.isRequired,
     setPortfolioList: PropTypes.func.isRequired,
     setTotalPortfolioPrice: PropTypes.func.isRequired
 }
