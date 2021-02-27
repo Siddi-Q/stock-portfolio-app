@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { getPortfolio, sell } from '../../services/user.service';
 
 function SellForm(props) {
-    async function handleSellSubmit(values) {
+    async function handleSellSubmit(values, actions) {
         try {
             const {sellTicker, sellQuantity} = values;
             await sell(sellTicker, sellQuantity);
@@ -18,6 +18,7 @@ function SellForm(props) {
             props.setPortfolioList(portfolioList);
             props.setBalance(balance);
             props.setTotalPortfolioPrice(totalPortfolioPrice);
+            actions.resetForm();
         }
         catch {
             console.log("An error occurred. Try again!");
@@ -31,7 +32,7 @@ function SellForm(props) {
                 sellTicker: Yup.string().required('Required'),
                 sellQuantity: Yup.number().required('Required')
             })}
-            onSubmit={(values) => handleSellSubmit(values)}
+            onSubmit={(values, actions) => handleSellSubmit(values, actions)}
         >
             {formik => (
                 <Form>
