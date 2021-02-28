@@ -50,7 +50,7 @@ function SellForm(props) {
                     </div>
                     {formik.status && <div className="alert alert-danger" role="alert">{formik.status}</div>}
                     <div className="form-group">
-                        <input type="submit" value="Sell" className="btn btn-primary btn-block" />
+                        <input type="submit" value="Sell" className="btn btn-primary btn-block" disabled={formik.isSubmitting} />
                     </div>
                 </Form>
             )}
