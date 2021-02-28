@@ -13,8 +13,7 @@ function TransactionForm(props) {
                     <a className="nav-item nav-link" id="nav-sell-tab" data-toggle="tab" href="#nav-sell" role="tab" aria-controls="nav-sell" aria-selected="false">Sell</a>
                 </div>
             </nav>
-            <div className="tab-content" id="nav-tabContent">
-                <br />
+            <div className="tab-content" id="nav-tabContent" style={{marginTop: "16px"}}>
                 <div className="tab-pane fade show active" id="nav-buy" role="tabpanel" aria-labelledby="nav-home-tab">
                     <BuyForm {...props}/>
                 </div>
