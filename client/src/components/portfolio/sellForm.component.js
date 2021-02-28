@@ -21,7 +21,7 @@ function SellForm(props) {
             actions.resetForm();
         }
         catch {
-            console.log("An error occurred. Try again!");
+            actions.setStatus("An error occurred. Try again!");
         }
     }
 
@@ -48,7 +48,7 @@ function SellForm(props) {
                             className="form-control" placeholder="Quantity" min="1"/>
                         <ErrorMessage component="div" name="sellQuantity" style={{color: "red"}} />
                     </div>
-                    {props.errorMessage && <p style={{ color: "red" }}>{props.errorMessage}</p> }
+                    {formik.status && <div className="alert alert-danger" role="alert">{formik.status}</div>}
                     <div className="form-group">
                         <input type="submit" value="Sell" className="btn btn-primary btn-block" />
                     </div>
