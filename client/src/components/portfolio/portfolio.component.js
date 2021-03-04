@@ -31,7 +31,9 @@ export default function Portfolio() {
 
     if(loading) {
         return (
-            <LoadingSpinner/>
+            <div className="row justify-content-center">
+                <LoadingSpinner/>            
+            </div>
         );
     }
     else {

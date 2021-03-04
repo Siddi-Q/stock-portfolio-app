@@ -17,7 +17,9 @@ function Logout(props) {
     });
 
     return (
-        <LoadingSpinner />
+        <div className="row justify-content-center">
+            <LoadingSpinner />
+        </div>
     );
 }
 

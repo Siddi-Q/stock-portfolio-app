@@ -22,7 +22,9 @@ export default function TransactionsList() {
 
     if(loading) {
         return (
-            <LoadingSpinner />
+            <div className="row justify-content-center">
+                <LoadingSpinner />
+            </div>
         );
     }
     else {
