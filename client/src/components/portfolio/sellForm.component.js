@@ -50,7 +50,7 @@ function SellForm(props) {
                     </div>
                     {formik.status && <div className="alert alert-danger" role="alert">{formik.status}</div>}
                     <div className="form-group">
-                        <input type="submit" value="Sell" className="btn btn-primary btn-block" disabled={formik.isSubmitting} />
+                        <input type="submit" value="Sell" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.sellTicker) || !Boolean(formik.values.sellQuantity) || !formik.isValid || formik.isSubmitting} />
                     </div>
                 </Form>
             )}
