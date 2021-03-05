@@ -25,12 +25,14 @@ function BuyForm(props) {
         }
     }
 
+    const required = 'Required!';
+
     return (
         <Formik
             initialValues={{buyTicker: '', buyQuantity: ''}}
             validationSchema={Yup.object({
-                buyTicker: Yup.string().required('Required'),
-                buyQuantity: Yup.number().required('Required')
+                buyTicker: Yup.string().required(required),
+                buyQuantity: Yup.number().required(required)
             })}
             onSubmit={(values, actions) => handleBuySubmit(values, actions)}
         >
