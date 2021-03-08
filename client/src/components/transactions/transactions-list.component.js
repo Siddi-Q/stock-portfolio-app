@@ -52,7 +52,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTable } from 'react-table';
 
 import LoadingSpinner from '../common/loading-spinner.component';
-import TransactionsListItem from './transactions-list-item.component';
 
 import { getTransactions } from '../../services/user.service';
 
@@ -64,8 +63,8 @@ export default function TransactionsList() {
         () => [
             {Header: 'Type', accessor: 'type'},
             {Header: 'Ticker', accessor: 'ticker'},
-            {Header: 'Quantity', accessor: 'quantity'},
-            {Header: 'Price', accessor: 'price'}
+            {Header: 'Quantity', accessor: 'quantity', Cell: ({value}) => {return value + " Share" + (value > 1 ? "s" : "")}},
+            {Header: 'Price', accessor: 'price', Cell: ({value}) => {return "$" + value.toFixed(2)}}
         ], []);
 
     useEffect(() => {
