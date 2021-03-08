@@ -49,7 +49,7 @@
 
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { useTable } from 'react-table';
+import { usePagination, useTable } from 'react-table';
 
 import LoadingSpinner from '../common/loading-spinner.component';
 
@@ -82,9 +82,13 @@ export default function TransactionsList() {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
+        page,
+        canNextPage,
+        canPreviousPage,
+        nextPage,
+        previousPage,
         prepareRow
-    } = useTable({columns, data: transactionsList});
+    } = useTable({columns, data: transactionsList}, usePagination);
 
     if(loading) {
         return (
@@ -113,7 +117,7 @@ export default function TransactionsList() {
                                 ))}
                             </thead>
                             <tbody {...getTableBodyProps()}>
-                                {rows.map(row => {
+                                {page.map((row, i) => {
                                     prepareRow(row);
                                     return (
                                         <tr {...row.getRowProps()}>
@@ -129,6 +133,11 @@ export default function TransactionsList() {
                                 })}
                             </tbody>
                         </table>
+                        <div>
+                            <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+                            <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+                        </div>
+                        <br />
                     </div>
                 </div>
             </div>
