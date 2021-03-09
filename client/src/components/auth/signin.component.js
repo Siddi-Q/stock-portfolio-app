@@ -8,12 +8,14 @@ import * as Yup from 'yup';
 import { signin } from '../../services/auth.service';
 
 function Signin(props) {
+    const required = 'Required!';
+
     return (
         <Formik
             initialValues={{email: '', password: ''}}
             validationSchema={Yup.object({
-                email: Yup.string().email('Invalid email address').required('Required'),
-                password: Yup.string().required('Required')
+                email: Yup.string().email('Invalid email address').required(required),
+                password: Yup.string().required(required)
             })}
             onSubmit={(values, actions) => {
                 const { email, password } = values;
