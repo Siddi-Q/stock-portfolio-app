@@ -83,8 +83,10 @@ export default function TransactionsList() {
         getTableBodyProps,
         headerGroups,
         page,
+        pageCount,
         canNextPage,
         canPreviousPage,
+        gotoPage,
         nextPage,
         previousPage,
         prepareRow
@@ -134,8 +136,10 @@ export default function TransactionsList() {
                             </tbody>
                         </table>
                         <div>
+                            <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
                             <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
                             <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+                            <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
                         </div>
                         <br />
                     </div>
