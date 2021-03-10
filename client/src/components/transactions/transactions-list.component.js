@@ -135,11 +135,19 @@ export default function TransactionsList() {
                                 })}
                             </tbody>
                         </table>
-                        <div>
-                            <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-                            <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-                            <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
-                            <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+                        <div className="btn-toolbar justify-content-center" role="toolbar">
+                            <div className="btn-group mr-2" role="group">
+                                <button type="button" className="btn btn-outline-primary" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+                            </div>
+                            <div className="btn-group mr-2" role="group">
+                                <button type="button" className="btn btn-outline-primary" onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+                            </div>
+                            <div className="btn-group mr-2" role="group">
+                                <button type="button" className="btn btn-outline-primary" onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+                            </div>
+                            <div className="btn-group" role="group">
+                                <button type="button" className="btn btn-outline-primary" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+                            </div>
                         </div>
                         <br />
                     </div>
