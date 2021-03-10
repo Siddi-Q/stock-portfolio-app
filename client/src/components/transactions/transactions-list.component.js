@@ -49,7 +49,7 @@
 
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { usePagination, useTable } from 'react-table';
+import { usePagination, useSortBy, useTable } from 'react-table';
 
 import LoadingSpinner from '../common/loading-spinner.component';
 
@@ -90,7 +90,7 @@ export default function TransactionsList() {
         nextPage,
         previousPage,
         prepareRow
-    } = useTable({columns, data: transactionsList}, usePagination);
+    } = useTable({columns, data: transactionsList}, useSortBy, usePagination);
 
     if(loading) {
         return (
@@ -111,7 +111,7 @@ export default function TransactionsList() {
                                 {headerGroups.map(headerGroup => (
                                     <tr {...headerGroup.getHeaderGroupProps()}>
                                         {headerGroup.headers.map(column => (
-                                            <th {...column.getHeaderProps()}>
+                                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                                                 {column.render('Header')}
                                             </th>
                                         ))}
