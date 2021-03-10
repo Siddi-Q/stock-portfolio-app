@@ -39,7 +39,7 @@ export default function Portfolio() {
     else {
         return (
             <>
-                <h1 id="portfolio-title">Portfolio (${totalPortfolioPrice.toFixed(2)})</h1>
+                <h1 id="portfolio-title">Portfolio - ${totalPortfolioPrice.toFixed(2)}</h1>
                 <br />
                 <div className="row justify-content-center">
                     <div className="col-sm-12 col-md-6 col-lg-8">
