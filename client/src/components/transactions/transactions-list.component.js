@@ -49,7 +49,7 @@
 
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { usePagination, useSortBy, useTable } from 'react-table';
+import { useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 
 import LoadingSpinner from '../common/loading-spinner.component';
 
@@ -62,6 +62,17 @@ const caretUpFill = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="1
 const caretDownFill = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
                         <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                       </svg>;
+
+function GlobalFilter(props) {
+    const {filter, setFilter} = props;
+    return (
+        <span>
+            Search: {' '}
+            <input value={filter || ''} 
+            onChange={e => setFilter(e.target.value)}/>
+        </span>
+    );
+}
 
 export default function TransactionsList() {
     const [transactionsList, setTransactionsList] = useState([]);
@@ -97,8 +108,12 @@ export default function TransactionsList() {
         gotoPage,
         nextPage,
         previousPage,
-        prepareRow
-    } = useTable({columns, data: transactionsList}, useSortBy, usePagination);
+        prepareRow,
+        state,
+        setGlobalFilter
+    } = useTable({columns, data: transactionsList}, useGlobalFilter, useSortBy, usePagination);
+
+    const { globalFilter } = state;
 
     if(loading) {
         return (
@@ -114,6 +129,7 @@ export default function TransactionsList() {
                 <br />
                 <div className="row">
                     <div className="col-sm-12 col-lg-8">
+                        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}  />
                         <table {...getTableProps()} className="table table-hover">
                             <thead>
                                 {headerGroups.map(headerGroup => (
