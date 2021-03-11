@@ -66,11 +66,11 @@ const caretDownFill = <svg xmlns="http://www.w3.org/2000/svg" width="16" height=
 function GlobalFilter(props) {
     const {filter, setFilter} = props;
     return (
-        <span>
-            Search: {' '}
-            <input value={filter || ''} 
-            onChange={e => setFilter(e.target.value)}/>
-        </span>
+        <form className="form-inline justify-content-end mb-2">
+            <label className="sr-only" htmlFor="search">Search</label>
+            <input id="search" type="search" placeholder="Search" aria-label="Search" className="form-control"
+            value={filter || ''} onChange={e => setFilter(e.target.value)}/>
+        </form>
     );
 }
 
@@ -126,7 +126,6 @@ export default function TransactionsList() {
         return (
             <div>
                 <h1>Transactions</h1>
-                <br />
                 <div className="row">
                     <div className="col-sm-12 col-lg-8">
                         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}  />
