@@ -36,11 +36,11 @@ const chevronDoubleRight = <svg xmlns="http://www.w3.org/2000/svg" width="16" he
 function GlobalFilter(props) {
     const {filter, setFilter} = props;
     return (
-        <form className="form-inline justify-content-end mb-2">
+        <>
             <label className="sr-only" htmlFor="search">Search</label>
             <input id="search" type="search" placeholder="Search" aria-label="Search" className="form-control"
             value={filter || ''} onChange={e => setFilter(e.target.value)}/>
-        </form>
+        </>
     );
 }
 
@@ -94,11 +94,13 @@ export default function TransactionsList() {
     }
     else {
         return (
-            <div>
+            <>
                 <h1>Transactions</h1>
                 <div className="row">
                     <div className="col-sm-12 col-lg-8">
-                        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}  />
+                        <form className="form-inline justify-content-end mb-2">
+                            <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}  />
+                        </form>
                         <table {...getTableProps()} className="table table-hover">
                             <thead>
                                 {headerGroups.map(headerGroup => (
@@ -149,7 +151,7 @@ export default function TransactionsList() {
                         <br />
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 }
