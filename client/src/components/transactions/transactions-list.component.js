@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 
 import LoadingSpinner from '../common/loading-spinner.component';
@@ -42,6 +43,11 @@ function GlobalFilter(props) {
             value={filter || ''} onChange={e => setFilter(e.target.value)}/>
         </>
     );
+}
+
+GlobalFilter.propTypes = {
+    filter: PropTypes.string,
+    setFilter: PropTypes.func.isRequired
 }
 
 export default function TransactionsList() {
