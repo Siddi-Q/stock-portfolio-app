@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
+import { useFilters, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 
 import LoadingSpinner from '../common/loading-spinner.component';
 
@@ -86,8 +86,9 @@ export default function TransactionsList() {
         previousPage,
         prepareRow,
         state,
+        setFilter,
         setGlobalFilter
-    } = useTable({columns, data: transactionsList}, useGlobalFilter, useSortBy, usePagination);
+    } = useTable({columns, data: transactionsList}, useFilters, useGlobalFilter, useSortBy, usePagination);
 
     const { globalFilter } = state;
 
@@ -154,9 +155,21 @@ export default function TransactionsList() {
                                 <button type="button" className="btn btn-outline-primary btn-circle d-flex justify-content-center align-items-center" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{chevronDoubleRight}</button>
                             </div>
                         </div>
-                        <br />
+                    </div>
+                    <div className="col-sm-12 col-lg-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Type</span>
+                            </div>
+                            <select className="custom-select" onChange={e => setFilter("type", e.target.value)}>
+                                <option value="">All</option>
+                                <option value="BUY">BUY</option>
+                                <option value="SELL">SELL</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+                <br />
             </>
         );
     }
