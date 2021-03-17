@@ -79,7 +79,7 @@ export default function TransactionsList() {
             <>
                 <h1>Transactions</h1>
                 <div className="row">
-                    <div className="col-sm-12 col-lg-8">
+                    <div className="col-sm-12 col-md-8 mb-3">
                         <form className="form-inline justify-content-end mb-2">
                             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}  />
                         </form>
@@ -131,7 +131,7 @@ export default function TransactionsList() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-12 col-lg-4">
+                    <div className="col-sm-6 col-md-4">
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Type</span>
