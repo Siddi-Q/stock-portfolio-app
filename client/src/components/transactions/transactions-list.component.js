@@ -176,6 +176,14 @@ export default function TransactionsList() {
                             onChange={e => setFilter("ticker", e.target.value)} />
                         </div>
 
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Quantity</span>
+                            </div>
+                            <input type="number" min="1" className="form-control"
+                            onChange={e => setFilter("quantity", Number(e.target.value))} />
+                        </div>
+
                     </div>
                 </div>
                 <br />
