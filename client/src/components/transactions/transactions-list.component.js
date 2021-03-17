@@ -157,12 +157,12 @@ export default function TransactionsList() {
                         </div>
                     </div>
                     <div className="col-sm-12 col-lg-4">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Type</span>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Type</span>
                             </div>
                             <select className="custom-select" onChange={e => setFilter("type", e.target.value)}>
-                                <option value="">All</option>
+                                <option value="">ALL</option>
                                 <option value="BUY">BUY</option>
                                 <option value="SELL">SELL</option>
                             </select>
