@@ -167,6 +167,15 @@ export default function TransactionsList() {
                                 <option value="SELL">SELL</option>
                             </select>
                         </div>
+
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Ticker</span>
+                            </div>
+                            <input type="search" placeholder="Search" aria-label="Search" className="form-control"
+                            onChange={e => setFilter("ticker", e.target.value)} />
+                        </div>
+
                     </div>
                 </div>
                 <br />
