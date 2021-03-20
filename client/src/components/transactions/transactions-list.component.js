@@ -79,7 +79,7 @@ export default function TransactionsList() {
             <>
                 <h1>Transactions</h1>
                 <div className="row">
-                    <div className="col-sm-12 col-md-8 mb-3">
+                    <div className="col-12 col-md-8 mb-3">
                         <form className="form-inline justify-content-end mb-2">
                             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}  />
                         </form>
@@ -131,34 +131,33 @@ export default function TransactionsList() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-6 col-md-4">
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Type</span>
+                    <div className="col-12 col-md-4">
+                        <form>
+                            <div className="form-group row">
+                                <label className="col-4 col-form-label">Type</label>
+                                <div className="col-8">
+                                    <select className="custom-select" onChange={e => setFilter("type", e.target.value)}>
+                                        <option value="">ALL</option>
+                                        <option value="BUY">BUY</option>
+                                        <option value="SELL">SELL</option>
+                                    </select>
+                                </div>
                             </div>
-                            <select className="custom-select" onChange={e => setFilter("type", e.target.value)}>
-                                <option value="">ALL</option>
-                                <option value="BUY">BUY</option>
-                                <option value="SELL">SELL</option>
-                            </select>
-                        </div>
-
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Ticker</span>
+                            <div className="form-group row">
+                                <label className="col-4 col-form-label">Ticker</label>
+                                <div className="col-8">
+                                    <input type="search" placeholder="Search" aria-label="Search" className="form-control"
+                                    onChange={e => setFilter("ticker", e.target.value)} />
+                                </div>
                             </div>
-                            <input type="search" placeholder="Search" aria-label="Search" className="form-control"
-                            onChange={e => setFilter("ticker", e.target.value)} />
-                        </div>
-
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Quantity</span>
+                            <div className="form-group row">
+                                <label className="col-4 col-form-label">Quantity</label>
+                                <div className="col-8">
+                                    <input type="number" min="1" className="form-control"
+                                    onChange={e => setFilter("quantity", Number(e.target.value))} />
+                                </div>
                             </div>
-                            <input type="number" min="1" className="form-control"
-                            onChange={e => setFilter("quantity", Number(e.target.value))} />
-                        </div>
-
+                        </form>
                     </div>
                 </div>
                 <br />
