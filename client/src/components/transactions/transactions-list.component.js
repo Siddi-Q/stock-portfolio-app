@@ -25,6 +25,24 @@ GlobalFilter.propTypes = {
     setFilter: PropTypes.func.isRequired
 }
 
+function TickerFilter(props) {
+    const {preFilteredRows, setFilter} = props;
+    const tickers = useMemo(() => {
+        const tickers = new Set();
+        preFilteredRows.forEach(row => tickers.add(row.values.ticker));
+        return [...tickers.values()]
+    }, [preFilteredRows]);
+
+    return (
+        <select className="custom-select" onChange={e => setFilter("ticker", e.target.value)}>
+            <option value="">ALL</option>
+            {tickers.map((ticker, idx) => (
+                <option key={idx} value={ticker}>{ticker}</option>
+            ))}
+        </select>
+    );
+}
+
 export default function TransactionsList() {
     const [transactionsList, setTransactionsList] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -62,7 +80,8 @@ export default function TransactionsList() {
         prepareRow,
         state,
         setFilter,
-        setGlobalFilter
+        setGlobalFilter,
+        preFilteredRows
     } = useTable({columns, data: transactionsList}, useFilters, useGlobalFilter, useSortBy, usePagination);
 
     const { globalFilter } = state;
@@ -146,8 +165,7 @@ export default function TransactionsList() {
                             <div className="form-group row">
                                 <label className="col-4 col-form-label"><strong>Ticker</strong></label>
                                 <div className="col-8">
-                                    <input type="search" placeholder="Search" aria-label="Search" className="form-control"
-                                    onChange={e => setFilter("ticker", e.target.value)} />
+                                    <TickerFilter preFilteredRows={preFilteredRows} setFilter={setFilter} />
                                 </div>
                             </div>
                             <div className="form-group row">
