@@ -134,7 +134,7 @@ export default function TransactionsList() {
                     <div className="col-12 col-md-4">
                         <form>
                             <div className="form-group row">
-                                <label className="col-4 col-form-label">Type</label>
+                                <label className="col-4 col-form-label"><strong>Type</strong></label>
                                 <div className="col-8">
                                     <select className="custom-select" onChange={e => setFilter("type", e.target.value)}>
                                         <option value="">ALL</option>
@@ -144,14 +144,14 @@ export default function TransactionsList() {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label className="col-4 col-form-label">Ticker</label>
+                                <label className="col-4 col-form-label"><strong>Ticker</strong></label>
                                 <div className="col-8">
                                     <input type="search" placeholder="Search" aria-label="Search" className="form-control"
                                     onChange={e => setFilter("ticker", e.target.value)} />
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label className="col-4 col-form-label">Quantity</label>
+                                <label className="col-4 col-form-label"><strong>Quantity</strong></label>
                                 <div className="col-8">
                                     <input type="number" min="1" className="form-control"
                                     onChange={e => setFilter("quantity", Number(e.target.value))} />
