@@ -34,7 +34,7 @@ function TickerFilter(props) {
     }, [preFilteredRows]);
 
     return (
-        <select className="custom-select" onChange={e => setFilter("ticker", e.target.value)}>
+        <select id="ticker-filter" className="custom-select" onChange={e => setFilter("ticker", e.target.value)}>
             <option value="">ALL</option>
             {tickers.map((ticker, idx) => (
                 <option key={idx} value={ticker}>{ticker}</option>
@@ -80,6 +80,7 @@ export default function TransactionsList() {
         prepareRow,
         state,
         setFilter,
+        setAllFilters,
         setGlobalFilter,
         preFilteredRows
     } = useTable({columns, data: transactionsList}, useFilters, useGlobalFilter, useSortBy, usePagination);
@@ -155,7 +156,7 @@ export default function TransactionsList() {
                             <div className="form-group row">
                                 <label className="col-4 col-form-label"><strong>Type</strong></label>
                                 <div className="col-8">
-                                    <select className="custom-select" onChange={e => setFilter("type", e.target.value)}>
+                                    <select id="type-filter" className="custom-select" onChange={e => setFilter("type", e.target.value)}>
                                         <option value="">ALL</option>
                                         <option value="BUY">BUY</option>
                                         <option value="SELL">SELL</option>
@@ -171,11 +172,20 @@ export default function TransactionsList() {
                             <div className="form-group row">
                                 <label className="col-4 col-form-label"><strong>Quantity</strong></label>
                                 <div className="col-8">
-                                    <input type="number" min="1" className="form-control"
+                                    <input id="quantity-filter" type="number" min="1" className="form-control"
                                     onChange={e => setFilter("quantity", Number(e.target.value))} />
                                 </div>
                             </div>
                         </form>
+                        <div className="form-group row justify-content-center">
+                            <button type="button" className="btn btn-light border" 
+                            onClick={() => {
+                                setAllFilters([]);
+                                document.getElementById("quantity-filter").value = null;
+                                document.getElementById("type-filter").value = "";
+                                document.getElementById("ticker-filter").value = "";
+                            }}>Reset</button>
+                        </div>
                     </div>
                 </div>
                 <br />
