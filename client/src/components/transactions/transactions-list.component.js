@@ -176,16 +176,16 @@ export default function TransactionsList() {
                                     onChange={e => setFilter("quantity", Number(e.target.value))} />
                                 </div>
                             </div>
+                            <div className="form-group row justify-content-center">
+                                <button type="button" className="btn btn-light border"
+                                onClick={() => {
+                                    setAllFilters([]);
+                                    document.getElementById("quantity-filter").value = null;
+                                    document.getElementById("type-filter").value = "";
+                                    document.getElementById("ticker-filter").value = "";
+                                }}>Reset</button>
+                            </div>
                         </form>
-                        <div className="form-group row justify-content-center">
-                            <button type="button" className="btn btn-light border" 
-                            onClick={() => {
-                                setAllFilters([]);
-                                document.getElementById("quantity-filter").value = null;
-                                document.getElementById("type-filter").value = "";
-                                document.getElementById("ticker-filter").value = "";
-                            }}>Reset</button>
-                        </div>
                     </div>
                 </div>
                 <br />
