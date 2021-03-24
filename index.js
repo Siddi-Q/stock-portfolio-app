@@ -4,7 +4,8 @@ const cors = require('cors');
 
 require('dotenv').config();
 require('./db/mongoose');
-const {userRouter, authRouter} = require('./routers/users');
+const userRouter = require('./routers/users');
+const authRouter = require('./routers/auth');
 
 const app = express();
 const port = process.env.PORT || 5000;
