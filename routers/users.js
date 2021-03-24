@@ -2,9 +2,10 @@ const express = require('express');
 const axios = require('axios');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
-const router = new express.Router();
+const userRouter = new express.Router();
+const authRouter = new express.Router();
 
-router.post('/register', async (req, res) => {
+authRouter.post('/register', async (req, res) => {
     const user = new User(req.body);
 
     try {
@@ -16,7 +17,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/signin', async (req, res) => {
+authRouter.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findByCredentials(email, password);
@@ -27,7 +28,7 @@ router.post('/signin', async (req, res) => {
     }
 });
 
-router.post('/verify', auth, (req, res) => {
+authRouter.post('/verify', auth, (req, res) => {
     try {
         res.send(true);
     } catch (error) {
@@ -36,7 +37,7 @@ router.post('/verify', auth, (req, res) => {
 });
 
 // Todo: cleanup
-router.post('/buy', auth, async (req, res) => {
+userRouter.post('/buy', auth, async (req, res) => {
     let {ticker, quantity} = req.body;
     ticker = ticker.toUpperCase();
     quantity = Number(quantity);
@@ -80,7 +81,7 @@ router.post('/buy', auth, async (req, res) => {
     }
 });
 
-router.post('/sell', auth, async (req, res) => {
+userRouter.post('/sell', auth, async (req, res) => {
     let {ticker, quantity} = req.body;
     ticker = ticker.toUpperCase();
     quantity = Number(quantity);
@@ -126,7 +127,7 @@ router.post('/sell', auth, async (req, res) => {
 });
 
 // Todo: Cleanup
-router.get('/portfolio', auth, async (req, res) => {
+userRouter.get('/portfolio', auth, async (req, res) => {
     try {
         const portfolioList = req.user.portfolio;
         const balance = req.user.balance;
@@ -167,7 +168,7 @@ router.get('/portfolio', auth, async (req, res) => {
     }
 });
 
-router.get('/transactions', auth, async (req, res) => {
+userRouter.get('/transactions', auth, async (req, res) => {
     try {
         const transactions = req.user.transactions;
         res.send(transactions);
@@ -176,7 +177,7 @@ router.get('/transactions', auth, async (req, res) => {
     }
 });
 
-router.post('/logout', auth, async (req, res) => {
+authRouter.post('/logout', auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter(token => {
             return token.token !== req.token;
@@ -188,4 +189,5 @@ router.post('/logout', auth, async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports.userRouter = userRouter;
+module.exports.authRouter = authRouter;
