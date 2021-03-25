@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { getPortfolio, sell } from '../../services/user.service';
+import { sell } from '../../services/stock.service';
+import { getPortfolio } from '../../services/user.service';
 
 function SellForm(props) {
     async function handleSellSubmit(values, actions) {
