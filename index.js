@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use(authRouter);
+app.use('/auth', authRouter);
 app.use(userRouter);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
