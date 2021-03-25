@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/auth', authRouter);
-app.use(stockRouter);
+app.use('/stock', stockRouter);
 app.use(userRouter);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
