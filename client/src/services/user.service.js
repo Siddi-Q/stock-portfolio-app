@@ -18,7 +18,7 @@ export const sell = async (ticker, quantity) => {
         quantity
     };
     
-    await axios.post('/sell', newItem, {
+    await axios.post('/stock/sell', newItem, {
         headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 }
@@ -29,7 +29,7 @@ export const buy = async (ticker, quantity) => {
         quantity
     };
 
-    await axios.post('/buy', newItem, {
+    await axios.post('/stock/buy', newItem, {
         headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 }
