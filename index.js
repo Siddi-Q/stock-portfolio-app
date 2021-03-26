@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use('/auth', authRouter);
 app.use('/stock', stockRouter);
-app.use(userRouter);
+app.use('/user', userRouter);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
