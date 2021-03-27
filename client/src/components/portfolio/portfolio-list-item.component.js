@@ -18,8 +18,7 @@ function PortfolioListItem(props) {
     return (
         <tr style={chooseStyle(props.item.performance)}>
             <td>{chooseIcon(props.item.performance)}</td>
-            {/* <td>{props.item.ticker}</td> */}
-            <td><Link to={`${props.item.ticker}/company`}>{props.item.ticker}</Link></td>
+            <td><Link to={`${props.item.ticker}/company`} style={chooseStyle(props.item.performance)}>{props.item.ticker}</Link></td>
             <td>{props.item.quantity} {props.item.quantity > 1 ? "Shares" : "Share"}</td>
             <td>${props.item.totalPrice.toFixed(2)}</td>
         </tr>
