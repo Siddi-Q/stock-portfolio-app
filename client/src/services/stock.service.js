@@ -21,3 +21,9 @@ export const sell = async (ticker, quantity) => {
         headers: {Authorization: 'Bearer ' + sessionStorage.token}
     });
 }
+
+export const getCompanyInfo = async (ticker) => {
+    return await axios.get(`/stock/${ticker}/company`, {
+        headers: {Authorization: 'Bearer ' + sessionStorage.token}
+    });
+}
