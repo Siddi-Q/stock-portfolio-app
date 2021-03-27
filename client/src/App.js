@@ -10,6 +10,7 @@ import Signin from "./components/auth/signin.component";
 import Register from "./components/auth/register.component";
 import Portfolio from "./components/portfolio/portfolio.component";
 import TransactionsList from "./components/transactions/transactions-list.component"
+import Company from  './components/company/company.component';
 import Logout from './components/auth/logout.component';
 import { verify } from './services/auth.service';
 
@@ -37,6 +38,7 @@ export default function App() {
           <Route exact path="/register" render={() => isAuth ? <Redirect to="/portfolio"/> : <Register setIsAuth={setIsAuth}/>}/>
           <Route exact path="/portfolio" render={() => isAuth ? <Portfolio/> : <Redirect to="/signin"/>}/>
           <Route exact path="/transactions" render={() => isAuth ? <TransactionsList /> : <Redirect to="/signin"/>}/>
+          <Route exact path="/:ticker/company" render={() => isAuth ? <Company /> : <Redirect to="/signin"/>} />
           <Route exact path="/logout" render={() => isAuth ? <Logout setIsAuth={setIsAuth}/> : <Redirect to="/signin"/>}/>
         </Switch>
       </div>
