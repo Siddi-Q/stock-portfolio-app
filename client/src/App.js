@@ -33,8 +33,7 @@ export default function App() {
       <br />
       <div className="container">
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/signin"/>}/>
-          <Route exact path="/signin" render={() => isAuth ? <Redirect to="/portfolio"/> : <Signin setIsAuth={setIsAuth}/>}/>
+          <Route exact path={["/", "/signin"]} render={() => isAuth ? <Redirect to="/portfolio"/> : <Signin setIsAuth={setIsAuth}/> } />
           <Route exact path="/register" render={() => isAuth ? <Redirect to="/portfolio"/> : <Register setIsAuth={setIsAuth}/>}/>
           <Route exact path="/portfolio" render={() => isAuth ? <Portfolio/> : <Redirect to="/signin"/>}/>
           <Route exact path="/transactions" render={() => isAuth ? <TransactionsList /> : <Redirect to="/signin"/>}/>
