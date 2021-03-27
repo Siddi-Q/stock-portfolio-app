@@ -95,4 +95,15 @@ stockRouter.post('/sell', auth, async (req, res) => {
     }
 });
 
+stockRouter.get('/:ticker/company', auth, async (req, res) => {
+    const { ticker } = req.params;
+    const api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexToken}`;
+    try {
+        const { data } = await axios.get(api_url);
+        res.status(200).send(data);
+    } catch(error) {
+        res.status(400).send({message: error.message});
+    }
+});
+
 module.exports = stockRouter;
