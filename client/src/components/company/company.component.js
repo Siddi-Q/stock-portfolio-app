@@ -40,21 +40,34 @@ export default function Company() {
                         <p>{symbol}</p>
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-4">
-                        <p>{website}</p>
-                        <p>{phone}</p>
-                        <p>{address}</p>
-                        <p>{address2}</p>
-                        <p>{city}, {state}, {country}</p>
-                        <p>{zip}</p>
+                        <a href={website}>{website}</a>
+                        <br />
+                        <span>{phone}</span>
+                        <br />
+                        <span>{address}</span>
+                        <br />
+                        <span>{address2}</span>
+                        <br />
+                        <span>{city}, {state}, {country}</span>
+                        <br />
+                        <span>{zip}</span>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        <p>{CEO}</p>
-                        <p>{industry}</p>
-                        <p>{sector}</p>
-                        {tags.map((tag, idx) => <p key={idx}>{tag}</p>)}
-                        <p>{employees}</p>
+                        <span><strong>CEO</strong> {CEO}</span>
+                        <br />
+                        <span><strong>Industry</strong> {industry}</span>
+                        <br />
+                        <span><strong>Sector</strong> {sector}</span>
+                        <br />
+                        <span><strong>Tags </strong></span>
+                        {tags.map((tag, idx) => <span key={idx}>{tag}</span>)}
+                        <br />
+                        <span><strong># of employees</strong> {employees}</span>
+                        <br />
+                        <br />
+                        <span><strong>Description</strong></span>
                         <p>{description}</p>
                     </div>
                 </div>
