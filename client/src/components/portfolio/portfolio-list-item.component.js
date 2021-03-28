@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import {caretUpFill, caretDownFill, dash} from '../../icons/icons';
+import { caretUpFill, caretDownFill, dash } from '../../icons/icons';
 
 function chooseStyle(performance) {
     const performanceColorObj = {"less": "red", "equal": "gray", "greater": "green"};
@@ -15,12 +15,16 @@ function chooseIcon(performance) {
 }
 
 function PortfolioListItem(props) {
+    const { performance, quantity, ticker, totalPrice } = props.item;
+    const style = chooseStyle(performance);
+    const icon = chooseIcon(performance);
+
     return (
-        <tr style={chooseStyle(props.item.performance)}>
-            <td>{chooseIcon(props.item.performance)}</td>
-            <td><Link to={`${props.item.ticker}/company`} style={chooseStyle(props.item.performance)}>{props.item.ticker}</Link></td>
-            <td>{props.item.quantity} {props.item.quantity > 1 ? "Shares" : "Share"}</td>
-            <td>${props.item.totalPrice.toFixed(2)}</td>
+        <tr style={style}>
+            <td>{icon}</td>
+            <td><Link to={`${ticker}/company`} style={style}>{ticker}</Link></td>
+            <td>{quantity} {quantity > 1 ? "Shares" : "Share"}</td>
+            <td>${totalPrice.toFixed(2)}</td>
         </tr>
     );
 }
