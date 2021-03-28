@@ -62,7 +62,7 @@ export default function Company() {
                         <span><strong>Sector</strong> {sector}</span>
                         <br />
                         <span><strong>Tags </strong></span>
-                        {tags.map((tag, idx) => <span key={idx}>{tag}</span>)}
+                        {tags.map((tag, idx) => <span key={idx} className="badge badge-info mr-1">{tag}</span>)}
                         <br />
                         <span><strong># of employees</strong> {employees}</span>
                         <br />
