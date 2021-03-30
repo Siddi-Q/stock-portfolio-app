@@ -55,20 +55,20 @@ export default function Company() {
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        <span><strong>CEO</strong> {CEO}</span>
+                        {CEO && <span><strong>CEO</strong> {CEO}</span>}
                         <br />
-                        <span><strong>Industry</strong> {industry}</span>
+                        {<span><strong>Industry</strong> {industry}</span>}
                         <br />
-                        <span><strong>Sector</strong> {sector}</span>
+                        {industry && <span><strong>Sector</strong> {sector}</span>}
                         <br />
                         <span><strong>Tags </strong></span>
-                        {tags.map((tag, idx) => <span key={idx} className="badge badge-info mr-1">{tag}</span>)}
+                        {tags && tags.map((tag, idx) => <span key={idx} className="badge badge-info mr-1">{tag}</span>)}
                         <br />
-                        <span><strong># of employees</strong> {employees}</span>
+                        {employees && <span><strong># of employees</strong> {employees}</span>}
                         <br />
                         <br />
                         <span><strong>Description</strong></span>
-                        <p>{description}</p>
+                        {description != "0" && <p>{description}</p>}
                     </div>
                 </div>
             </>
