@@ -36,10 +36,10 @@ export default function Company() {
 
         return (
             <>
-                <div className="row justify-content-center">
-                    <img src={`https://storage.googleapis.com/iex/api/logos/${ticker}.png`} alt="Logo" className="float-left"/>
+                <div className="row justify-content-center mb-2">
+                    <img src={`https://storage.googleapis.com/iex/api/logos/${ticker}.png`} alt="Logo"/>
                 </div>
-                <div className="row">
+                <div className="row mb-2">
                     <div className="col-sm-12 col-md-6 col-lg-8">
                         <h1>{companyName}</h1>
                     </div>
@@ -65,7 +65,6 @@ export default function Company() {
                             <br />
                         </>
                         }
-                        <br />
                     </div>
                 </div>
                 <div className="row">
