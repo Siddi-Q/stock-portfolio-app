@@ -67,8 +67,12 @@ export default function Company() {
                         {employees && <span><strong># of employees</strong> {employees}</span>}
                         <br />
                         <br />
-                        <span><strong>Description</strong></span>
-                        {description != "0" && <p>{description}</p>}
+                        {description !== "0" && 
+                        <>
+                            <span><strong>Description</strong></span>
+                            <p>{description}</p>
+                        </>
+                        }
                     </div>
                 </div>
             </>
