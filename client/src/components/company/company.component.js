@@ -88,7 +88,7 @@ export default function Company() {
                         {tags && 
                         <>
                             <span><strong>Tags </strong></span>
-                            {tags.map((tag, idx) => <span key={idx} className="badge badge-info mr-1">{tag}</span>)}
+                            {tags.map((tag, idx) => <span key={idx} className="badge badge-info text-wrap mr-1">{tag}</span>)}
                             <br />
                         </>
                         }
