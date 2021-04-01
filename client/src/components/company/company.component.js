@@ -8,7 +8,7 @@ import { getCompanyInfo } from '../../services/stock.service';
 import { geoAlt, link45Deg, telephone } from '../../icons/icons';
 
 export default function Company() {
-    const [companyInfo, setCompanyInfo] = useState();
+    const [companyInfo, setCompanyInfo] = useState({});
     const [loading, setLoading] = useState(true);
 
     const { ticker } = useParams();
@@ -41,31 +41,64 @@ export default function Company() {
                         <h1>{companyName}</h1>
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-4">
-                        {link45Deg}{' '}
-                        <a href={website}>{website}</a>
-                        <br />
-                        {telephone}{' '}
-                        <span>{phone}</span>
-                        <br />
-                        {geoAlt}{' '}
-                        <span>{city}, {state}, {country}</span>
-                        <br />
+                        {website !== "0" &&
+                        <>
+                            {link45Deg}{' '}
+                            <a href={website}>{website}</a>
+                            <br />
+                        </>
+                        }
+                        {phone !== "0" &&
+                        <>
+                            {telephone}{' '}
+                            <span>{phone}</span>
+                            <br />
+                        </>
+                        }
+                        {city !== "0" && state !== "0" && country !== "0" &&
+                        <>
+                            {geoAlt}{' '}
+                            <span>{city}, {state}, {country}</span>
+                            <br />
+                        </>
+                        }
                         <br />
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        {CEO && <span><strong>CEO</strong> {CEO}</span>}
-                        <br />
-                        {<span><strong>Industry</strong> {industry}</span>}
-                        <br />
-                        {industry && <span><strong>Sector</strong> {sector}</span>}
-                        <br />
-                        <span><strong>Tags </strong></span>
-                        {tags && tags.map((tag, idx) => <span key={idx} className="badge badge-info mr-1">{tag}</span>)}
-                        <br />
-                        {employees && <span><strong># of employees</strong> {employees}</span>}
-                        <br />
+                        {CEO !== "0" &&
+                        <>
+                            <span><strong>CEO</strong> {CEO}</span>
+                            <br />
+                        </>
+                        }
+                        {industry !== "0" &&
+                        <>
+                            <span><strong>Industry</strong> {industry}</span>
+                            <br />
+                        </>
+                        }
+                        {sector !== "0" &&
+                        <>
+                            <span><strong>Sector</strong> {sector}</span>
+                            <br />
+                        </>
+                        }
+                        {tags && 
+                        <>
+                            <span><strong>Tags </strong></span>
+                            {tags.map((tag, idx) => <span key={idx} className="badge badge-info mr-1">{tag}</span>)}
+                            <br />
+                        </>
+                        }
+                        {employees &&
+                        <>
+                            <span><strong># of employees</strong> {employees}</span>
+                            <br />
+                        </>
+                        }
+                        
                         <br />
                         {description !== "0" && 
                         <>
