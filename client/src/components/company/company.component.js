@@ -36,6 +36,9 @@ export default function Company() {
 
         return (
             <>
+                <div className="row justify-content-center">
+                    <img src={`https://storage.googleapis.com/iex/api/logos/${ticker}.png`} alt="Logo" className="float-left"/>
+                </div>
                 <div className="row">
                     <div className="col-sm-12 col-md-6 col-lg-8">
                         <h1>{companyName}</h1>
