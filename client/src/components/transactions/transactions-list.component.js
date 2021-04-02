@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useFilters, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 
@@ -50,7 +51,7 @@ export default function TransactionsList() {
     const columns = useMemo(
         () => [
             {Header: 'Type', accessor: 'type'},
-            {Header: 'Ticker', accessor: 'ticker'},
+            {Header: 'Ticker', accessor: 'ticker', Cell: ({value}) => {return <Link to={`${value}/company`}>{value}</Link>}},
             {Header: 'Quantity', accessor: 'quantity', Cell: ({value}) => {return value + " Share" + (value > 1 ? "s" : "")}},
             {Header: 'Price', accessor: 'price', Cell: ({value}) => {return "$" + value.toFixed(2)}}
         ], []);
