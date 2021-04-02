@@ -43,11 +43,14 @@ export default function Portfolio() {
                 <br />
                 <div className="row justify-content-center">
                     <div className="col-sm-12 col-md-6 col-lg-8">
+                        {portfolioList.length !== 0 ?
                         <table className="table table-hover">
                             <tbody>
                                 <PortfolioList portfolioList={portfolioList}/>
                             </tbody>
-                        </table>
+                        </table> : 
+                        <h3>You have nothing in your portfolio!</h3>
+                        }
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-4">
                         <TransactionForm
