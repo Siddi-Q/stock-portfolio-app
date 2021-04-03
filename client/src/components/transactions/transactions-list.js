@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useFilters, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 
-import LoadingSpinner from '../common/loading-spinner.component';
+import LoadingSpinner from '../common/loading-spinner';
 
-import { getTransactions } from '../../services/user.service';
+import { getTransactions } from '../../services/user';
 
 import {caretUpFill, caretDownFill, chevronLeft, chevronDoubleLeft, chevronRight, chevronDoubleRight} from '../../icons/icons';
 import "../../styles/styles.css";

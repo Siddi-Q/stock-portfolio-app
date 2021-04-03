@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import LoadingSpinner from '../common/loading-spinner.component';
+import LoadingSpinner from '../common/loading-spinner';
 
-import { getCompanyInfo } from '../../services/stock.service';
+import { getCompanyInfo } from '../../services/stock';
 
 import { geoAlt, link45Deg, telephone } from '../../icons/icons';
 

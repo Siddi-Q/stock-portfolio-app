@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import LoadingSpinner from '../common/loading-spinner.component';
-import PortfolioList from './portfolio-list.component';
-import TransactionForm from './transaction-form.component';
+import LoadingSpinner from '../common/loading-spinner';
+import PortfolioList from './portfolio-list';
+import TransactionForm from './transaction-form/transaction-form';
 
-import { getPortfolio } from '../../services/user.service';
+import { getPortfolio } from '../../services/user';
 
 import "../../styles/styles.css"
 

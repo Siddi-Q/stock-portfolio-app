@@ -1,7 +1,7 @@
 import React  from 'react';
 import PropTypes from 'prop-types';
-import BuyForm from './buyForm.component';
-import SellForm from './sellForm.component';
+import BuyForm from './buy-form';
+import SellForm from './sell-form';
 
 function TransactionForm(props) {
     return (

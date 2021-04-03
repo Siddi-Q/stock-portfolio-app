@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PortfolioListItem from './portfolio-list-item.component';
+import PortfolioListItem from './portfolio-list-item';
 
 function PortfolioList(props) {
     return (

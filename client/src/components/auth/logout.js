@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import LoadingSpinner from '../common/loading-spinner.component';
+import LoadingSpinner from '../common/loading-spinner';
 
-import { logout } from '../../services/auth.service';
+import { logout } from '../../services/auth';
 
 function Logout(props) {
     useEffect(() => {

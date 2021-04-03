@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 
-import Navbar from "./components/navbars/navbar.component";
-import PrivateNavbar from "./components/navbars/privateNavbar.component";
-import Signin from "./components/auth/signin.component";
-import Register from "./components/auth/register.component";
-import Portfolio from "./components/portfolio/portfolio.component";
-import TransactionsList from "./components/transactions/transactions-list.component"
-import Company from  './components/company/company.component';
-import Logout from './components/auth/logout.component';
-import { verify } from './services/auth.service';
+import Navbar from "./components/navbars/navbar";
+import PrivateNavbar from "./components/navbars/private-navbar";
+import Signin from "./components/auth/signin";
+import Register from "./components/auth/register";
+import Portfolio from "./components/portfolio/portfolio";
+import TransactionsList from "./components/transactions/transactions-list"
+import Company from  './components/company/company';
+import Logout from './components/auth/logout';
+import { verify } from './services/auth';
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
