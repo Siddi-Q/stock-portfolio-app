@@ -3,28 +3,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useFilters, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 
+import GlobalFilter from './global-filter';
 import LoadingSpinner from '../common/loading-spinner';
 
 import { getTransactions } from '../../services/user';
 
 import {caretUpFill, caretDownFill, chevronLeft, chevronDoubleLeft, chevronRight, chevronDoubleRight} from '../../icons/icons';
 import "../../styles/styles.css";
-
-function GlobalFilter(props) {
-    const {filter, setFilter} = props;
-    return (
-        <>
-            <label className="sr-only" htmlFor="search">Search</label>
-            <input id="search" type="search" placeholder="Search" aria-label="Search" className="form-control"
-            value={filter || ''} onChange={e => setFilter(e.target.value)}/>
-        </>
-    );
-}
-
-GlobalFilter.propTypes = {
-    filter: PropTypes.string,
-    setFilter: PropTypes.func.isRequired
-}
 
 function TickerFilter(props) {
     const {preFilteredRows, setFilter} = props;
