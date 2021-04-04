@@ -41,8 +41,12 @@ function SellForm(props) {
                 <Form>
                     <div className="form-group">
                         <label className="sr-only">Ticker</label>
-                        <Field id="sellTicker" name="sellTicker" type="text" 
-                            className="form-control" placeholder="Ticker"/>
+                        <Field id="sellTicker" name="sellTicker" as="select" className="custom-select">
+                            <option value="">Ticker</option>
+                            {props.portfolioList.map((portfolioItem, idx) =>
+                                <option key={idx} value={portfolioItem.ticker}>{portfolioItem.ticker}</option>
+                            )}
+                        </Field>
                         <ErrorMessage component="div" name="sellTicker" style={{color: "red"}} />
                     </div>
                     <div className="form-group">

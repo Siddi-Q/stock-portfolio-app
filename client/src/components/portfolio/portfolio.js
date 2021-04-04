@@ -55,6 +55,7 @@ export default function Portfolio() {
                     <div className="col-sm-12 col-md-6 col-lg-4">
                         <TransactionForm
                             balance={balance}
+                            portfolioList={portfolioList}
                             setBalance={setBalance}
                             setPortfolioList={setPortfolioList}
                             setTotalPortfolioPrice={setTotalPortfolioPrice}
