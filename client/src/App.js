@@ -9,7 +9,7 @@ import PrivateNavbar from "./components/navbars/private-navbar";
 import Signin from "./components/auth/signin";
 import Register from "./components/auth/register";
 import Portfolio from "./components/portfolio/portfolio";
-import TransactionsList from "./components/transactions/transactions"
+import Transactions from "./components/transactions/transactions";
 import Company from  './components/company/company';
 import Logout from './components/auth/logout';
 import { verify } from './services/auth';
@@ -36,7 +36,7 @@ export default function App() {
           <Route exact path={["/", "/signin"]} render={() => isAuth ? <Redirect to="/portfolio"/> : <Signin setIsAuth={setIsAuth}/> } />
           <Route exact path="/register" render={() => isAuth ? <Redirect to="/portfolio"/> : <Register setIsAuth={setIsAuth}/>}/>
           <Route exact path="/portfolio" render={() => isAuth ? <Portfolio/> : <Redirect to="/signin"/>}/>
-          <Route exact path="/transactions" render={() => isAuth ? <TransactionsList /> : <Redirect to="/signin"/>}/>
+          <Route exact path="/transactions" render={() => isAuth ? <Transactions /> : <Redirect to="/signin"/>}/>
           <Route exact path="/:ticker/company" render={() => isAuth ? <Company /> : <Redirect to="/signin"/>} />
           <Route exact path="/logout" render={() => isAuth ? <Logout setIsAuth={setIsAuth}/> : <Redirect to="/signin"/>}/>
         </Switch>

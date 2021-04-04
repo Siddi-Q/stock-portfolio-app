@@ -49,7 +49,7 @@ TickerFilter.propTypes = {
     setFilter: PropTypes.func.isRequired
 }
 
-export default function TransactionsList() {
+export default function Transactions() {
     const [transactionsList, setTransactionsList] = useState([]);
     const [loading, setLoading] = useState(true);
 
