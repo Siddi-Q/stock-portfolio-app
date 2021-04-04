@@ -9,7 +9,7 @@ import PrivateNavbar from "./components/navbars/private-navbar";
 import Signin from "./components/auth/signin";
 import Register from "./components/auth/register";
 import Portfolio from "./components/portfolio/portfolio";
-import TransactionsList from "./components/transactions/transactions-list"
+import TransactionsList from "./components/transactions/transactions"
 import Company from  './components/company/company';
 import Logout from './components/auth/logout';
 import { verify } from './services/auth';
