@@ -67,6 +67,7 @@ function SellForm(props) {
 
 SellForm.propTypes = {
     balance: PropTypes.number.isRequired,
+    portfolioList: PropTypes.array.isRequired,
     setBalance: PropTypes.func.isRequired,
     setPortfolioList: PropTypes.func.isRequired,
     setTotalPortfolioPrice: PropTypes.func.isRequired
