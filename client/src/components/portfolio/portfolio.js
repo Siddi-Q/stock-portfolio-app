@@ -39,8 +39,7 @@ export default function Portfolio() {
     else {
         return (
             <>
-                <h1 id="portfolio-title">Portfolio <span className="badge badge-dark">${totalPortfolioPrice.toFixed(2)}</span></h1>
-                <br />
+                <h1 id="portfolio-title" className="mb-3">Portfolio <span className="badge badge-dark">${totalPortfolioPrice.toFixed(2)}</span></h1>
                 <div className="row justify-content-center">
                     <div className="col-sm-12 col-md-6 col-lg-8">
                         {portfolioList.length !== 0 ?

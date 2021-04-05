@@ -88,8 +88,7 @@ export default function Transactions() {
     else {
         return (
             <>
-                <h1>Transactions <span className="badge badge-dark">{transactionsList.length}</span></h1>
-                <br />
+                <h1 className="mb-3">Transactions <span className="badge badge-dark">{transactionsList.length}</span></h1>
                 <div className="row">
                     <div className="col-12 col-md-8 mb-3">
                         <form className="form-inline justify-content-end mb-2">
