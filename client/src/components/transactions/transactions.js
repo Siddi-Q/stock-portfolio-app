@@ -42,9 +42,9 @@ export default function Transactions() {
     const columns = useMemo(
         () => [
             {Header: 'Type', accessor: 'type'},
-            {Header: 'Ticker', accessor: 'ticker', Cell: ({value}) => <Link to={`${value}/company`}>{value}</Link>},
-            {Header: 'Quantity', accessor: 'quantity', Cell: ({value}) => value + " Share" + (value > 1 ? "s" : "")},
-            {Header: 'Price', accessor: 'price', Cell: ({value}) => "$" + value.toFixed(2)},
+            {Header: 'Ticker', accessor: 'ticker', Cell: ({value}) => value ? <Link to={`${value}/company`}>{value}</Link> : ""},
+            {Header: 'Quantity', accessor: 'quantity', Cell: ({value}) => value ? value + " Share" + (value > 1 ? "s" : "") : ""},
+            {Header: 'Price', accessor: 'price', Cell: ({value}) => value ? "$" + value.toFixed(2) : ""},
             {Header: 'Date', accessor: 'date', Cell: ({value}) => value ? format(new Date(parseISO(value)), "MMM d, yyyy") : "" }
         ], []);
 
