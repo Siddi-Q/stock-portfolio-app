@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useFilters, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
+import { format, parseISO } from "date-fns";
 
 import GlobalFilter from './global-filter';
 import LoadingSpinner from '../common/loading-spinner';
@@ -43,7 +44,8 @@ export default function Transactions() {
             {Header: 'Type', accessor: 'type'},
             {Header: 'Ticker', accessor: 'ticker', Cell: ({value}) => <Link to={`${value}/company`}>{value}</Link>},
             {Header: 'Quantity', accessor: 'quantity', Cell: ({value}) => value + " Share" + (value > 1 ? "s" : "")},
-            {Header: 'Price', accessor: 'price', Cell: ({value}) => "$" + value.toFixed(2)}
+            {Header: 'Price', accessor: 'price', Cell: ({value}) => "$" + value.toFixed(2)},
+            {Header: 'Date', accessor: 'date', Cell: ({value}) => value ? format(new Date(parseISO(value)), "MMM d, yyyy") : "" }
         ], []);
 
     useEffect(() => {
