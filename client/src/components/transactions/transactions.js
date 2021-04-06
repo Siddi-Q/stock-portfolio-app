@@ -88,7 +88,15 @@ export default function Transactions() {
         );
     }
     else {
-        return (
+        return transactionsList.length === 0 ? 
+        (
+            <>
+                <h1 className="mb-3">Transactions <span className="badge badge-dark">{transactionsList.length}</span></h1>
+                <h3>You have no transactions!</h3>
+            </>
+        )
+        : 
+        (
             <>
                 <h1 className="mb-3">Transactions <span className="badge badge-dark">{transactionsList.length}</span></h1>
                 <div className="row">
