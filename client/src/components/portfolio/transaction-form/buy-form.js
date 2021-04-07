@@ -53,7 +53,15 @@ function BuyForm(props) {
                     </div>
                     {formik.status && <div className="alert alert-danger" role="alert">{formik.status}</div>}
                     <div className="form-group">
-                        <input type="submit" value="Buy" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.buyTicker) || !Boolean(formik.values.buyQuantity) || !formik.isValid || formik.isSubmitting} />
+                        <button type="submit" value="Buy" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.buyTicker) || !Boolean(formik.values.buyQuantity) || !formik.isValid || formik.isSubmitting}>
+                            {(!formik.isValidating && formik.isSubmitting) &&
+                                <>
+                                    <span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+                                    <span class="sr-only">Loading...</span>
+                                </>
+                            }
+                            Buy
+                        </button>
                     </div>
                 </Form>
             )}
