@@ -11,4 +11,9 @@
     text-align: center;
     padding: 0;
     border-radius: 50%;
-  }
+}
+
+.badge-green {
+    color: #48ccac;
+    background-color: rgba(72,204,172,0.15)
+}
