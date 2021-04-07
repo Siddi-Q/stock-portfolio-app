@@ -6,7 +6,7 @@ import SellForm from './sell-form';
 function TransactionForm(props) {
     return (
         <div className="card card-container" style={{padding: "40px 40px", backgroundColor: "#f7f7f7"}}>
-            <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Balance <span className="badge badge-dark">${props.balance.toFixed(2)}</span></h3>
+            <h3 className="text-center" style={{padding: "0px 0px 10px 0px"}}>Balance <span className="badge" style={{color: "#48ccac", backgroundColor: "rgba(72,204,172,0.15)"}}>${props.balance.toFixed(2)}</span></h3>
             <nav>
                 <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <a className="nav-item nav-link active" id="nav-buy-tab" data-toggle="tab" href="#nav-buy" role="tab" aria-controls="nav-buy" aria-selected="true">Buy</a>
