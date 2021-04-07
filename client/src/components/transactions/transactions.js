@@ -121,7 +121,7 @@ export default function Transactions() {
                                 ))}
                             </thead>
                             <tbody {...getTableBodyProps()}>
-                                {page.map((row, i) => {
+                                {page.map(row => {
                                     prepareRow(row);
                                     return (
                                         <tr {...row.getRowProps()}>
