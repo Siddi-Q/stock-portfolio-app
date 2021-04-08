@@ -11,7 +11,11 @@ stockRouter.post('/buy', auth, async (req, res) => {
     ticker = ticker.toUpperCase();
     quantity = Number(quantity);
 
-    const api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/quote?token=${process.env.iexSandboxToken}`;
+    if(process.env.NODE_ENV === "production") {
+        var api_url = `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${process.env.iexToken}`;
+    } else {
+        var api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/quote?token=${process.env.iexSandboxToken}`;
+    }
 
     try {
         if(!Number.isInteger(quantity) || quantity < 0 ) {
@@ -55,7 +59,11 @@ stockRouter.post('/sell', auth, async (req, res) => {
     ticker = ticker.toUpperCase();
     quantity = Number(quantity);
 
-    const api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/quote?token=${process.env.iexSandboxToken}`;
+    if(process.env.NODE_ENV === "production") {
+        var api_url = `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${process.env.iexToken}`;
+    } else {
+        var api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/quote?token=${process.env.iexSandboxToken}`;
+    }
 
     try {
         if(!Number.isInteger(quantity) || quantity < 0 ) {
@@ -97,7 +105,13 @@ stockRouter.post('/sell', auth, async (req, res) => {
 
 stockRouter.get('/:ticker/company', auth, async (req, res) => {
     const { ticker } = req.params;
-    const api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexSandboxToken}`;
+
+    if(process.env.NODE_ENV === "production") {
+        var api_url = `https://cloud.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexToken}`;
+    } else {
+        var api_url = `https://sandbox.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexSandboxToken}`;
+    }
+
     try {
         const { data } = await axios.get(api_url);
         res.status(200).send(data);
