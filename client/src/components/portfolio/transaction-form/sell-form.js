@@ -60,8 +60,8 @@ function SellForm(props) {
                         <button type="submit" value="Sell" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.sellTicker) || !Boolean(formik.values.sellQuantity) || !formik.isValid || formik.isSubmitting}>
                             {(!formik.isValidating && formik.isSubmitting) &&
                                 <>
-                                    <span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
-                                    <span class="sr-only">Loading...</span>
+                                    <span className="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+                                    <span className="sr-only">Loading...</span>
                                 </>
                             }
                             Sell

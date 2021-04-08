@@ -56,8 +56,8 @@ function BuyForm(props) {
                         <button type="submit" value="Buy" className="btn btn-primary btn-block" disabled={!Boolean(formik.values.buyTicker) || !Boolean(formik.values.buyQuantity) || !formik.isValid || formik.isSubmitting}>
                             {(!formik.isValidating && formik.isSubmitting) &&
                                 <>
-                                    <span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
-                                    <span class="sr-only">Loading...</span>
+                                    <span className="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+                                    <span className="sr-only">Loading...</span>
                                 </>
                             }
                             Buy
