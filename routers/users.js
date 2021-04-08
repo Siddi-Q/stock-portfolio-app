@@ -20,7 +20,7 @@ userRouter.get('/portfolio', auth, async (req, res) => {
 
         if(symbols.length > 0) {
             let symbolsString = symbols.join();
-            const api_url = `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${symbolsString}&types=quote&token=${process.env.iexToken}`;
+            const api_url = `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${symbolsString}&types=quote&token=${process.env.iexSandboxToken}`;
             const response = await axios.get(api_url);
 
             // For each stock, get the latest and open prices
