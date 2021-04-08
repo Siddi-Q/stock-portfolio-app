@@ -1,39 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useFilters, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
 import { format, parseISO } from "date-fns";
 
 import GlobalFilter from './global-filter';
+import TickerFilter from './ticker-filter';
 import LoadingSpinner from '../common/loading-spinner';
 
 import { getTransactions } from '../../services/user';
 
 import {caretUpFill, caretDownFill, chevronLeft, chevronDoubleLeft, chevronRight, chevronDoubleRight} from '../../icons/icons';
 import "../../styles/styles.css";
-
-function TickerFilter(props) {
-    const {preFilteredRows, setFilter} = props;
-    const tickers = useMemo(() => {
-        const tickers = new Set();
-        preFilteredRows.forEach(row => tickers.add(row.values.ticker));
-        return [...tickers.values()]
-    }, [preFilteredRows]);
-
-    return (
-        <select id="ticker-filter" className="custom-select" onChange={e => setFilter("ticker", e.target.value)}>
-            <option value="">ALL</option>
-            {tickers.map((ticker, idx) => (
-                <option key={idx} value={ticker}>{ticker}</option>
-            ))}
-        </select>
-    );
-}
-
-TickerFilter.propTypes = {
-    preFilteredRows: PropTypes.array.isRequired,
-    setFilter: PropTypes.func.isRequired
-}
 
 export default function Transactions() {
     const [transactionsList, setTransactionsList] = useState([]);
