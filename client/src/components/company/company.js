@@ -47,7 +47,7 @@ export default function Company() {
                         {website !== "0" &&
                         <>
                             {link45Deg}{' '}
-                            <a href={website}>{website}</a>
+                            <a href={website} rel="noopener noreferrer" target="_blank">{website}</a>
                             <br />
                         </>
                         }
