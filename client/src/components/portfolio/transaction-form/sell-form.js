@@ -15,7 +15,7 @@ function SellForm(props) {
             const {sellTicker, sellQuantity} = values;
             await sell(sellTicker, sellQuantity);
 
-            toast.success("Success!");
+            toast.success(`Success! You sold ${sellQuantity} ${sellQuantity > 1 ? "stocks": "stock"} of ${sellTicker.toUpperCase()}.`);
             const res = await getPortfolio();
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
 
