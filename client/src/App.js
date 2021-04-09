@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
-
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Slide, ToastContainer } from 'react-toastify';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import Navbar from "./components/navbars/navbar";
 import PrivateNavbar from "./components/navbars/private-navbar";
@@ -30,6 +32,7 @@ export default function App() {
   return (
     <Router>
       {isAuth ? <PrivateNavbar /> : <Navbar />}
+      <ToastContainer position="bottom-right" transition={Slide} />
       <br />
       <div className="container">
         <Switch>

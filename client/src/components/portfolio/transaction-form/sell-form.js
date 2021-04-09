@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { toast } from 'react-toastify';
+
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -13,6 +15,7 @@ function SellForm(props) {
             const {sellTicker, sellQuantity} = values;
             await sell(sellTicker, sellQuantity);
 
+            toast.success("Success!");
             const res = await getPortfolio();
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
 
