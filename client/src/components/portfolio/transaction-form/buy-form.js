@@ -15,7 +15,7 @@ function BuyForm(props) {
             const {buyTicker, buyQuantity} = values;
             await buy(buyTicker, buyQuantity);
 
-            toast.success(`Success! You've bought ${buyQuantity} ${buyQuantity > 1 ? "stocks": "stock"} of ${buyTicker.toUpperCase()}.`);
+            toast.success(`Success! You bought ${buyQuantity} ${buyQuantity > 1 ? "stocks": "stock"} of ${buyTicker.toUpperCase()}.`);
             const res = await getPortfolio();
             const {portfolioList, balance, totalPortfolioPrice} = res.data;
             
