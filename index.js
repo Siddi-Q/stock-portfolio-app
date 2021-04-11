@@ -1,9 +1,9 @@
+require('dotenv').config();
+require('./db/mongoose');
+
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-
-require('dotenv').config();
-require('./db/mongoose');
 
 const authRouter = require('./routers/auth');
 const stockRouter = require('./routers/stock');
