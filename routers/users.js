@@ -1,21 +1,16 @@
 const express = require('express');
 const axios = require('axios');
-const User = require('../models/user');
 const auth = require('../middleware/auth');
 
 const userRouter = new express.Router();
 
 userRouter.get('/portfolio', auth, async (req, res) => {
   try {
-    const portfolioList = req.user.portfolio;
-    const balance = req.user.balance;
+    const {portfolio: portfolioList, balance} = req.user;
     let totalPortfolioPrice = 0;
 
     // Get list of ticker symbols in the user's portfolio
-    let symbols = [];
-    for (let i = 0; i < portfolioList.length; i++) {
-      symbols.push(portfolioList[i].ticker.toUpperCase());
-    }
+    const symbols = portfolioList.map(portfolioItem => portfolioItem.ticker.toUpperCase());
 
     if (symbols.length > 0) {
       let symbolsString = symbols.join();
@@ -37,11 +32,9 @@ userRouter.get('/portfolio', auth, async (req, res) => {
         // Set stock's current performance
         if (latestPrice < openPrice) {
           portfolioList[i].performance = 'less';
-        }
-        else if (latestPrice == openPrice) {
+        } else if (latestPrice == openPrice) {
           portfolioList[i].performance = 'equal';
-        }
-        else {
+        } else {
           portfolioList[i].performance = 'greater';
         }
       }
