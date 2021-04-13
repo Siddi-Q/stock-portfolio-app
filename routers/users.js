@@ -9,11 +9,10 @@ userRouter.get('/portfolio', auth, async (req, res) => {
     const {portfolio: portfolioList, balance} = req.user;
     let totalPortfolioPrice = 0;
 
-    // Get list of ticker symbols in the user's portfolio
     const symbols = portfolioList.map(portfolioItem => portfolioItem.ticker.toUpperCase());
 
     if (symbols.length > 0) {
-      let symbolsString = symbols.join();
+      const symbolsString = symbols.join();
 
       if (process.env.NODE_ENV === 'production') {
         var apiUrl = `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbolsString}&types=quote&token=${process.env.iexToken}`;
@@ -21,23 +20,21 @@ userRouter.get('/portfolio', auth, async (req, res) => {
         var apiUrl = `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${symbolsString}&types=quote&token=${process.env.iexSandboxToken}`;
       }
 
-      const response = await axios.get(apiUrl);
+      const {data} = await axios.get(apiUrl);
 
-      // For each stock, get the latest and open prices
-      for (let i = 0; i < portfolioList.length; i++) {
-        let {latestPrice, open: openPrice} = response.data[portfolioList[i].ticker].quote;
+      portfolioList.forEach(portfolioItem => {
+        const {latestPrice, open: openPrice} = data[portfolioItem.ticker].quote;
+        portfolioItem.totalPrice = latestPrice * portfolioItem.quantity;
+        totalPortfolioPrice += portfolioItem.totalPrice;
 
-        portfolioList[i].totalPrice = latestPrice * portfolioList[i].quantity;
-        totalPortfolioPrice += portfolioList[i].totalPrice;
-        // Set stock's current performance
         if (latestPrice < openPrice) {
-          portfolioList[i].performance = 'less';
-        } else if (latestPrice == openPrice) {
-          portfolioList[i].performance = 'equal';
+          portfolioItem.performance = 'less';
+        } else if (latestPrice > openPrice) {
+          portfolioItem.performance = 'greater';
         } else {
-          portfolioList[i].performance = 'greater';
+          portfolioItem.performance = 'equal';
         }
-      }
+      });
     }
 
     res.send({portfolioList, balance, totalPortfolioPrice});
