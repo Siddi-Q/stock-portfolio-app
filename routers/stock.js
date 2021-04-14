@@ -70,8 +70,8 @@ stockRouter.post('/sell', auth, async (req, res) => {
     }
 
     let {balance, portfolio, transactions} = req.user;
-    const response = await axios.get(apiUrl);
-    const {latestPrice} = response.data;
+    const {data} = await axios.get(apiUrl);
+    const {latestPrice} = data;
     const totalPrice = latestPrice * quantity;
 
     // Check if the user has enoough of a certain stock
@@ -80,21 +80,16 @@ stockRouter.post('/sell', auth, async (req, res) => {
       throw new Error('Cannot sell this stock!');
     }
 
-    // Update balance
     balance += totalPrice;
-
-    // Update transactions
     transactions.push({type: 'SELL', ticker, quantity, price: latestPrice, date: new Date()});
 
-    // Update portfolio
-    let stock = portfolio[stockIndex];
+    const stock = portfolio[stockIndex];
     if (stock.quantity === quantity) {
       portfolio.splice(stockIndex, 1);
     } else {
       stock.quantity -= quantity;
     }
 
-    // Update database with updated values
     await User.findByIdAndUpdate(req.user.id, {transactions, balance, portfolio});
     res.status(201).send('Good!');
   } catch(error) {
@@ -103,7 +98,7 @@ stockRouter.post('/sell', auth, async (req, res) => {
 });
 
 stockRouter.get('/:ticker/company', auth, async (req, res) => {
-  const { ticker } = req.params;
+  const {ticker} = req.params;
 
   if (process.env.NODE_ENV === 'production') {
     var apiUrl = `https://cloud.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexToken}`;
@@ -112,7 +107,7 @@ stockRouter.get('/:ticker/company', auth, async (req, res) => {
   }
 
   try {
-    const { data } = await axios.get(apiUrl);
+    const {data} = await axios.get(apiUrl);
     res.status(200).send(data);
   } catch(error) {
     res.status(400).send({message: error.message});
