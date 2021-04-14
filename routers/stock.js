@@ -31,13 +31,9 @@ stockRouter.post('/buy', auth, async (req, res) => {
       throw new Error('Purchase amount is greater than your balance!');
     }
 
-    // Update balance
-    balance = balance - totalPrice;
-
-    // Update transactions
+    balance -= totalPrice;
     transactions.push({type: 'BUY', ticker, quantity, price: latestPrice, date: new Date()});
 
-    // Update portfolio
     const stockIndex = portfolio.findIndex(stock => stock.ticker.toUpperCase() === ticker);
     if (stockIndex === -1) {
       portfolio.push({ticker, quantity});
@@ -45,7 +41,6 @@ stockRouter.post('/buy', auth, async (req, res) => {
       portfolio[stockIndex].quantity += quantity;
     }
 
-    // Update database with updated values
     await User.findByIdAndUpdate(req.user.id, {transactions, balance, portfolio});
     res.status(201).send('Good!');
   } catch (error) {
