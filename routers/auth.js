@@ -1,20 +1,11 @@
 const express = require('express');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
+const authController = require('../controllers/authController');
 
 const authRouter = new express.Router();
 
-authRouter.post('/register', async (req, res) => {
-  const user = new User(req.body);
-
-  try {
-    await user.save();
-    const authToken = await user.generateAuthToken();
-    res.status(201).send({ user, authToken });
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+authRouter.post('/register', authController.registerNewUser);
 
 authRouter.post('/signin', async (req, res) => {
   try {
