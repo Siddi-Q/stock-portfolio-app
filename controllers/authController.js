@@ -12,6 +12,18 @@ const registerNewUser = async (req, res) => {
   }
 }
 
+const signinUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findByCredentials(email, password);
+    const authToken = await user.generateAuthToken();
+    res.send({ user, authToken });
+  } catch (error) {
+    res.status(400).send({message: 'Incorrect email or password!'});
+  }
+}
+
 module.exports = {
   registerNewUser,
+  signinUser,
 }
