@@ -1,5 +1,17 @@
 const User = require('../models/user');
 
+const logoutUser = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter(token => {
+      return token.token !== req.token;
+    });
+    await req.user.save();
+    res.send();
+  } catch {
+    res.status(500).send();
+  }
+}
+
 const registerNewUser = async (req, res) => {
   const user = new User(req.body);
 
@@ -24,6 +36,7 @@ const signinUser = async (req, res) => {
 }
 
 module.exports = {
+  logoutUser,
   registerNewUser,
   signinUser,
 }
