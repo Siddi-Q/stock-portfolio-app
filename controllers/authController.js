@@ -35,8 +35,17 @@ const signinUser = async (req, res) => {
   }
 }
 
+const verifyUser = (_req, res) => {
+  try {
+    res.send(true);
+  } catch (error) {
+    res.status(500).send({message: 'Server error!'});
+  }
+}
+
 module.exports = {
   logoutUser,
   registerNewUser,
   signinUser,
+  verifyUser,
 }

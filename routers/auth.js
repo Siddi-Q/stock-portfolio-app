@@ -10,12 +10,6 @@ authRouter.post('/signin', authController.signinUser);
 
 authRouter.post('/logout', auth, authController.logoutUser);
 
-authRouter.post('/verify', auth, (req, res) => {
-  try {
-    res.send(true);
-  } catch (error) {
-    res.status(500).send({message: 'Server error!'});
-  }
-});
+authRouter.post('/verify', auth, authController.verifyUser);
 
 module.exports = authRouter;
