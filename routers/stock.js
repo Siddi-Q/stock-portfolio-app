@@ -11,21 +11,6 @@ stockRouter.post('/buy', auth, stockController.buyStock);
 
 stockRouter.post('/sell', auth, stockController.sellStock);
 
-stockRouter.get('/:ticker/company', auth, async (req, res) => {
-  const {ticker} = req.params;
-
-  if (process.env.NODE_ENV === 'production') {
-    var apiUrl = `https://cloud.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexToken}`;
-  } else {
-    var apiUrl = `https://sandbox.iexapis.com/stable/stock/${ticker}/company?token=${process.env.iexSandboxToken}`;
-  }
-
-  try {
-    const {data} = await axios.get(apiUrl);
-    res.status(200).send(data);
-  } catch(error) {
-    res.status(400).send({message: error.message});
-  }
-});
+stockRouter.get('/:ticker/company', auth, stockController.getCompanyInfo);
 
 module.exports = stockRouter;
