@@ -8,13 +8,6 @@ const userRouter = new express.Router();
 
 userRouter.get('/portfolio', auth, usersController.getPortfolio);
 
-userRouter.get('/transactions', auth, async (req, res) => {
-  try {
-    const transactions = req.user.transactions;
-    res.send(transactions);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+userRouter.get('/transactions', auth, usersController.getTransactions);
 
 module.exports = userRouter;

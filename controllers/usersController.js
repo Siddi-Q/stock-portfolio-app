@@ -39,6 +39,16 @@ const getPortfolio = async (req, res) => {
   }
 }
 
+const getTransactions = async (req, res) => {
+  try {
+    const transactions = req.user.transactions;
+    res.send(transactions);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
 module.exports = {
     getPortfolio,
+    getTransactions,
 }
