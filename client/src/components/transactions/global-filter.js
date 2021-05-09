@@ -7,8 +7,10 @@ export default function GlobalFilter(props) {
   return (
     <>
       <label className="sr-only" htmlFor="search">Search</label>
-      <input id="search" type="search" placeholder="Search" aria-label="Search" className="form-control" 
-      value={filter || ''} onChange={e => setFilter(e.target.value)} />
+      <input
+        id="search" type="search" placeholder="Search" aria-label="Search" className="form-control"
+        value={filter || ''} onChange={e => setFilter(e.target.value)}
+      />
     </>
   );
 }
