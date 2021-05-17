@@ -1,19 +1,19 @@
 @media only screen and (max-width: 400px) {
-    #portfolio-title {
-        font-size: 1.5em;
-    }
+  #portfolio-title {
+    font-size: 1.5em;
+  }
 }
 
 .btn-circle {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    padding: 0;
-    border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
 }
 
 .badge-green {
-    color: #48ccac;
-    background-color: rgba(72,204,172,0.15)
+  color: #48ccac;
+  background-color: rgba(72,204,172,0.15)
 }
